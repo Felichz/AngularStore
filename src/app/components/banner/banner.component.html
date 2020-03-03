@@ -1,0 +1,10 @@
+<!-- Slider main container -->
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide" *ngFor="let image of images; index as i">
+            <img [src]="image" alt="Banner image {{i+1}}">
+        </div>
+    </div>
+</div>
