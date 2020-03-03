@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // Un componente especifico dedicado a cada ruta
+import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './routes/home/home.component';
 import { ProductsComponent } from './routes/products/products.component';
 import { ProductDetailComponent } from './routes/product-detail/product-detail.component';
@@ -13,29 +14,35 @@ import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.co
 // Component: El componente enlazado dicha ruta
 const routes: Routes = [
   {
-    path: 'home',
-    redirectTo: '',
-    pathMatch: 'full'
-  },
-  {
     path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'products',
-    component: ProductsComponent
-  },
-  {
-    path: 'products/:id',
-    component: ProductDetailComponent
-  },
-  {
-    path: 'contacts',
-    component: ContactComponent
-  },
-  {
-    path: 'demo',
-    component: DemoComponent
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'products',
+        component: ProductsComponent
+      },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent
+      },
+      {
+        path: 'contacts',
+        component: ContactComponent
+      },
+      {
+        path: 'demo',
+        component: DemoComponent
+      }
+    ]
   },
   {
     path: '**',

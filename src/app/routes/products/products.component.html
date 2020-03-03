@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-  <app-header></app-header>
-  <h1>{{title}}</h1>
-    
-  <div class="product" *ngFor="let product of products">
-    <app-product 
-      *ngIf = "product.destroyed === false"
-      [product]="product"
-      (addToCartEvent)="addToCart($event)"
-      (destroyProductEvent)="destroyProduct($event)">
-    </app-product>
-  </div>
-</body>
-</html>
+<h1>{{title}}</h1>
+  
+<div class="product" *ngFor="let product of products">
+  <app-product 
+    *ngIf = "product.destroyed === false"
+    [product]="product"
+    (addToCartEvent)="addToCart($event)"
+    (destroyProductEvent)="destroyProduct($event)">
+  </app-product>
+</div>
