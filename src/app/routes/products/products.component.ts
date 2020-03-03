@@ -8,8 +8,8 @@ import { ProductsService } from '../../services/products.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  private products: ProductInterface[];
-  private title: string;
+  public products: ProductInterface[];
+  public title: string;
 
   constructor( private productsService: ProductsService ) {
 
