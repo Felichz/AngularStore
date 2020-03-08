@@ -1,0 +1,10 @@
+<h1>Products</h1>
+
+<div class="product-grid row around-xs">
+  <div class="product col-xs-12 col-sm-6 col-md-4" *ngFor="let product of products;">
+    <app-product
+      [product]="product"
+      (addToCartEvent)="addToCart($event)">
+    </app-product>
+  </div>
+</div>

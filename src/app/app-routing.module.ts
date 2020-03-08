@@ -1,57 +1,29 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {
+  Routes,
+  RouterModule,
+  PreloadAllModules
+} from '@angular/router';
 
-// Un componente especifico dedicado a cada ruta
-import { LayoutComponent } from './components/layout/layout.component';
-import { HomeComponent } from './routes/home/home.component';
-import { ProductsComponent } from './routes/products/products.component';
-import { ProductDetailComponent } from './routes/product-detail/product-detail.component';
-import { ContactComponent } from './routes/contact/contact.component';
-import { DemoComponent } from './routes/demo/demo.component';
-import { PageNotFoundComponent } from './routes/page-not-found/page-not-found.component';
-
-// Path: La URI de la ruta
-// Component: El componente enlazado dicha ruta
+// Path: Route URI
+// Component: The component to bind to the route path
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-      },
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'products',
-        component: ProductsComponent
-      },
-      {
-        path: 'products/:id',
-        component: ProductDetailComponent
-      },
-      {
-        path: 'contacts',
-        component: ContactComponent
-      },
-      {
-        path: 'demo',
-        component: DemoComponent
-      }
-    ]
+    loadChildren: () => import('./layout/layout.module').then( m => m.LayoutModule )
   },
   {
     path: '**',
-    component: PageNotFoundComponent
+    loadChildren: () => import('./modules/page-not-found/page-not-found.module').then( m => m.PageNotFoundModule )
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
