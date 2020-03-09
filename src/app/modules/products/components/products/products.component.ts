@@ -15,24 +15,22 @@ export class ProductsComponent implements OnInit {
   public rows: {start: number, end: number}[];
   public PRODUCTS_PER_ROW: number;
 
-  constructor(private productsService: ProductsService) {
+  constructor( private productsService: ProductsService ) {
     this.title = 'Angular Store';
-    this.products = productsService.getAllProducts();
+  }
 
-    this.PRODUCTS_PER_ROW = 3;
+  ngOnInit() {
+    this.fetchProducts();
+  }
 
-    this.rows = [];
-    for (let i = 0; i < this.products.length / this.PRODUCTS_PER_ROW; i++) {
-      this.rows.push({
-        start: (i) * 3,
-        end: ( (i + 1) * 3) - 1
+  fetchProducts() {
+    this.productsService.getAllProducts()
+      .subscribe( products => {
+        this.products = products;
       });
-    }
   }
 
   addToCart(id: string) {
     console.log(`AppComponent: Product ${id} added to cart`);
   }
-
-  ngOnInit() {}
 }

@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ProductInterface } from 'src/app/interfaces/product-interface';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,61 +12,21 @@ import { ProductInterface } from 'src/app/interfaces/product-interface';
 // A service is usually used to provide data to the component
 export class ProductsService {
 
+  private product: ProductInterface;
   private products: ProductInterface[];
 
-  constructor() {
-    this.products = [
-      {
-        id: '1',
-        image: 'assets/images/camiseta.png',
-        title: 'T-Shirt',
-        price: 80000,
-        description: 'bla bla bla bla bla'
-      },
-      {
-        id: '2',
-        image: 'assets/images/hoodie.png',
-        title: 'Hoodie',
-        price: 80000,
-        description: 'bla bla bla bla bla'
-      },
-      {
-        id: '3',
-        image: 'assets/images/mug.png',
-        title: 'Mug',
-        price: 80000,
-        description: 'bla bla bla bla bla'
-      },
-      {
-        id: '4',
-        image: 'assets/images/pin.png',
-        title: 'Pin',
-        price: 80000,
-        description: 'bla bla bla bla bla'
-      },
-      {
-        id: '5',
-        image: 'assets/images/stickers1.png',
-        title: 'Stickers',
-        price: 80000,
-        description: 'bla bla bla bla bla'
-      },
-      {
-        id: '6',
-        image: 'assets/images/stickers2.png',
-        title: 'Stickers',
-        price: 80000,
-        description: 'bla bla bla bla bla'
-      }
-    ];
+  private API_URL: string = environment.product_api_url;
+
+  constructor( private httpClient: HttpClient ) { }
+
+  getAllProducts(): Observable<ProductInterface[]> {
+
+    return this.httpClient.get<ProductInterface[]>(this.API_URL);
   }
 
-  getAllProducts(): ProductInterface[] {
-    return this.products;
-  }
+  getProduct( id: string ): Observable<ProductInterface> {
 
-  getProduct( id: string ): ProductInterface {
-    return this.products.find( product => product.id === id );
+    return this.httpClient.get<ProductInterface>(`${this.API_URL}${id}`);
   }
 
 }
