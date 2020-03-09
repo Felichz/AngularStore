@@ -65,10 +65,4 @@ export class ProductsService {
     return this.products.find( product => product.id === id );
   }
 
-  deleteProduct( id: string ) {
-    const product: ProductInterface = this.getProduct(id);
-
-    product.destroyed = true;
-  }
-
 }

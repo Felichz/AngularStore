@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./layout/layout.module').then( m => m.LayoutModule )
   },
   {
+    path: 'admin',
+    loadChildren: () => import('./modules/admin/admin.module').then( m => m.AdminModule )
+  },
+  {
     path: '**',
     loadChildren: () => import('./modules/page-not-found/page-not-found.module').then( m => m.PageNotFoundModule )
   }
