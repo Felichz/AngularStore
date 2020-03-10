@@ -21,12 +21,17 @@ export class ProductsService {
 
   getAllProducts(): Observable<ProductInterface[]> {
 
-    return this.httpClient.get<ProductInterface[]>(this.API_URL);
+    return this.httpClient.get<ProductInterface[]>( this.API_URL );
   }
 
   getProduct( id: string ): Observable<ProductInterface> {
 
-    return this.httpClient.get<ProductInterface>(`${this.API_URL}${id}`);
+    return this.httpClient.get<ProductInterface>( this.API_URL + id );
+  }
+
+  createProduct( product: ProductInterface ) {
+
+    return this.httpClient.post( this.API_URL, product );
   }
 
 }
