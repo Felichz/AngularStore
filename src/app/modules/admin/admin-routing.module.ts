@@ -12,8 +12,14 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       {
-        path: 'create',
-        component: ProductFormComponent
+        path: 'product',
+        component: null,
+        children: [
+          {
+            path: 'create',
+            component: ProductFormComponent
+          }
+        ]
       },
       {
         path: 'product-list',

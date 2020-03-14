@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="products">
+<table mat-table [dataSource]="products" *ngIf="products">
     <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let products"> {{products.id}} </td>
@@ -30,3 +30,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<mat-spinner *ngIf="!products"></mat-spinner>

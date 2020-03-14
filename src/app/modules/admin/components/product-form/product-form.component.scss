@@ -1,41 +1,31 @@
-.full-width {
-  width: 100%;
+div.parent {
+    margin: 0 auto;
+    text-align: center;
 }
 
-.shipping-card {
-  min-width: 120px;
-  margin: 20px auto;
+div.child {
+    min-width: 70%;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 5em;
+    padding-top: 2em;
+    text-align: center;
+    background: white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .25);
 }
 
-.mat-radio-button {
-  display: block;
-  margin: 5px 0;
+mat-card {
+    width: 70%;
+    margin: 0 auto;
+    padding: 2em 0;
+    text-align: center;
 }
 
-.row {
-  display: flex;
-  flex-direction: row;
+form {
+    text-align: left;
+    padding: 0 5%;
 }
 
-.col {
-  flex: 1;
-  margin-right: 20px;
-}
-
-.col:last-child {
-  margin-right: 0;
-}
-
-//////////// My custom styles
-
-:host > form, .shipping-card {
-  height: 100%;
-}
-
-.shipping-card {
-  margin: 0;
-}
-
-.mat-card-content {
-  padding: 0 2em;
+mat-form-field.textarea {
+    min-width: 70%;
 }
