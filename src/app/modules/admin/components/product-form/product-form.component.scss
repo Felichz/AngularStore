@@ -29,3 +29,9 @@ form {
 mat-form-field.textarea {
     min-width: 70%;
 }
+
+.errorMessage {
+    margin-top: -10px;
+    margin-bottom: -5px;
+    color: red;
+}

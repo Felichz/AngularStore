@@ -5,20 +5,25 @@
             <mat-form-field>
                 <input matInput formControlName="id" type="number" placeholder="ID">
             </mat-form-field>
+            <p class="errorMessage" *ngIf="productForm.get('id').hasError('required') && productForm.get('id').dirty">Required field</p>
             <br>
             <mat-form-field>
                 <input matInput formControlName="title" type="text" placeholder="Title">
             </mat-form-field>
+            <p class="errorMessage" *ngIf="productForm.get('title').hasError('required') && productForm.get('title').dirty">Required field</p>
             <br>
             <mat-form-field>
                 <input matInput formControlName="price" type="number" placeholder="Price">
             </mat-form-field>
+            <p class="errorMessage" *ngIf="priceField.hasError('too_high') && priceField.dirty">The price cannot reach 10,000</p>
+            <p class="errorMessage" *ngIf="priceField.hasError('required') && priceField.dirty">Requiered field</p>
             <br>
             <mat-form-field class="textarea">
                 <textarea matInput placeholder="Description" formControlName="description" name="" id="" cols="30" rows="10"></textarea>
             </mat-form-field>
+            <p class="errorMessage" *ngIf="productForm.get('description').hasError('required') && productForm.get('description').dirty">Required field</p>
             <mat-card-actions>
-                <button mat-raised-button type="submit">Send</button>
+                <button [disabled]="productForm.invalid" mat-raised-button type="submit">Send</button>
             </mat-card-actions>
             <br>
         </form>
