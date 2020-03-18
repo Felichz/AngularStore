@@ -19,7 +19,7 @@
         <th mat-header-cell *matHeaderCellDef id="actions"> Actions </th>
         <td mat-cell *matCellDef="let products">
             <div>
-                <button mat-icon-button>
+                <button routerLink="/admin/product/edit/{{products.id}}" mat-icon-button>
                     <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn">

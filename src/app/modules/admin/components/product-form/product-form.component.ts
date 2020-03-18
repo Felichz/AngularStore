@@ -34,17 +34,31 @@ export class ProductFormComponent implements OnInit {
 
   submitForm(product, event) {
 
+    product.id = product.id.toString();
+
     this.productService.createProduct(product).subscribe();
 
     Swal.fire({
       title: 'New product created!',
       icon: 'success'
-    }).then( ()=>{
+    }).then( () => {
       this.router.navigate(['/admin/product-list']);
     });
   }
 
   get priceField() {
     return this.productForm.get('price');
+  }
+
+  get idField() {
+    return this.productForm.get('id');
+  }
+
+  get titleField() {
+    return this.productForm.get('title');
+  }
+
+  get descriptionField() {
+    return this.productForm.get('description');
   }
 }

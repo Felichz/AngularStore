@@ -12,3 +12,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body {
   overflow-x: hidden;
 }
+
+.formErrorMessage {
+  color: red;
+}
+
+.formErrorMessage:first-child {
+  margin-top: -10px;
+}
+
+.formErrorMessage:last-child {
+  margin-bottom: -10px;
+}

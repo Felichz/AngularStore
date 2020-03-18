@@ -34,7 +34,10 @@ export class ProductsService {
     return this.httpClient.post( this.API_URL, product );
   }
 
-  updateProduct( id: string ) {}
+  updateProduct( id: string, product: ProductInterface ) {
+
+    return this.httpClient.put( this.API_URL + id, product );
+  }
 
   deleteProduct( id: string ) {
 

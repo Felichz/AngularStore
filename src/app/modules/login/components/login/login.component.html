@@ -1,0 +1,28 @@
+<br>
+<div id="loginForm" class="row center-xs">
+    <mat-card class="col-xs-12 col-sm-8 col-md-6">
+        <mat-card-title>Login Account</mat-card-title>
+        <mat-card-content class="start-xs">
+            <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
+                <mat-form-field>
+                    <input matInput formControlName="email" type="email" placeholder="Email">
+                </mat-form-field>
+                <div *ngIf="emailField.dirty && emailField.invalid">
+                    <div *ngIf="emailField.hasError('required')" class="formErrorMessage">Required field</div>
+                    <div *ngIf="emailField.hasError('email')" class="formErrorMessage">Invalid email</div>
+                </div>
+                <br>
+                <mat-form-field>
+                    <input matInput formControlName="password" type="password" placeholder="Password">
+                </mat-form-field>
+                <div *ngIf="passwordField.dirty && passwordField.invalid">
+                    <div *ngIf="passwordField.hasError('required')" class="formErrorMessage">Required field</div>
+                    <div *ngIf="passwordField.hasError('minlength')" class="formErrorMessage">The password must be at least 5 characters</div>
+                    <div *ngIf="passwordField.hasError('pattern')" class="formErrorMessage">Only alphanumeric characters are allowed</div>
+                </div>
+                <br>
+                <button mat-raised-button type="submit">Login</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

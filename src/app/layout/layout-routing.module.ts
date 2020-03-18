@@ -31,6 +31,14 @@ const routes: Routes = [
       {
         path: 'demo',
         loadChildren: () => import('src/app/modules/demo/demo.module').then( m => m.DemoModule )
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('src/app/modules/login/login.module').then( m => m.LoginModule )
+      },
+      {
+        path: 'register',
+        loadChildren: () => import('src/app/modules/register/register.module').then( m => m.RegisterModule )
       }
     ]
   }

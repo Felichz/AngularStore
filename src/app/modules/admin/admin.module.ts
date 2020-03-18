@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductEditComponent } from './components/product-edit/product-edit.component';
 import { NavComponent } from './components/nav/nav.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -17,7 +18,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
     ProductFormComponent,
     NavComponent,
     DashboardComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductEditComponent
   ],
   imports: [
     CommonModule,
