@@ -1,0 +1,13 @@
+<h1>Cart products</h1>
+
+<div class="product-grid row around-xs" *ngIf="products">
+  <div class="product col-xs-12 col-sm-6 col-md-4" *ngFor="let product of products;">
+    <app-product
+        class="cartProduct"
+        [product]="product"
+        (addToCartEvent)="addToCart($event)">
+    </app-product>
+  </div>
+</div>
+
+<mat-spinner *ngIf="!products"></mat-spinner>

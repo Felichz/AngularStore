@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MyValidators } from 'src/app/utils/validators';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { ProductsService } from 'src/app/core/services/products/products.service';
 
 import Swal from 'sweetalert2';
+import { ProductInterface } from 'src/app/interfaces/product-interface';
 
 @Component({
   selector: 'app-product-edit',
@@ -24,16 +25,17 @@ export class ProductEditComponent implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductsService
   ) {
-    this.route.params.subscribe( params => {
+    this.route.params.subscribe( (params: Params) => {
       this.id = params.id;
     });
+  }
 
+  ngOnInit() {
     this.productService.getProduct( this.id )
       .subscribe( product => {
 
         if (product) {
           this.productForm = this.formBuilder.group({
-            id: [product.id, [ Validators.required ]],
             title: [product.title, [ Validators.required ]],
             price: [product.price, [ Validators.required, MyValidators.IsValidPrice ]],
             description: [product.description, [ Validators.required ]]
@@ -44,10 +46,7 @@ export class ProductEditComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
-  }
-
-  submitForm(product, event) {
+  submitForm(product: Partial<ProductInterface>, event) {
 
     this.productService.updateProduct(this.id, product).subscribe();
 

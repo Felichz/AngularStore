@@ -34,7 +34,7 @@ export class ProductsService {
     return this.httpClient.post( this.API_URL, product );
   }
 
-  updateProduct( id: string, product: ProductInterface ) {
+  updateProduct( id: string, product: Partial<ProductInterface> ) {
 
     return this.httpClient.put( this.API_URL + id, product );
   }

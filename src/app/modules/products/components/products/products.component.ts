@@ -12,9 +12,6 @@ export class ProductsComponent implements OnInit {
   public products: ProductInterface[];
   public title: string;
 
-  public rows: {start: number, end: number}[];
-  public PRODUCTS_PER_ROW: number;
-
   constructor( private productsService: ProductsService ) {
     this.title = 'Angular Store';
   }

@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { ProductInterface } from 'src/app/interfaces/product-interface';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 
 @Component({
     selector: 'app-product',
@@ -26,7 +27,9 @@ export class ProductComponent implements OnChanges, OnInit, OnDestroy, AfterView
 
     bgImageCss: string;
 
-    constructor() {
+    constructor(
+        private cartService: CartService
+    ) {
         this.today = new Date();
         this.count = 0;
         this.destroyed = false;
@@ -59,8 +62,7 @@ export class ProductComponent implements OnChanges, OnInit, OnDestroy, AfterView
     }
 
     addToCartClicked() {
-        console.log('');
-        console.log(`[${this.product.id}] ProductComponent: addToCartClicked`);
+        this.cartService.addProduct(this.product);
 
         this.addToCartEvent.emit( parseInt(this.product.id, 10) );
     }

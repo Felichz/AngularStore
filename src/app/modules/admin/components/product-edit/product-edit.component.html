@@ -3,14 +3,7 @@
     <mat-card-content>
         <form *ngIf="productForm" [formGroup]="productForm" (ngSubmit)="submitForm(productForm.value)">
             <mat-form-field>
-                <input matInput formControlName="id" type="number" placeholder="ID">
-            </mat-form-field>
-            <div *ngIf="idField.dirty && idField.invalid">
-                <div class="formErrorMessage" *ngIf="productForm.get('id').hasError('required') && productForm.get('id').dirty">Required field</div>
-            </div>
-            <br>
-            <mat-form-field>
-                <input matInput formControlName="title" type="text" placeholder="Title">
+                <input #titulo matInput formControlName="title" type="text" placeholder="Title">
             </mat-form-field>
             <div *ngIf="titleField.dirty && titleField.invalid">
                 <div class="formErrorMessage" *ngIf="productForm.get('title').hasError('required') && productForm.get('title').dirty">Required field</div>
