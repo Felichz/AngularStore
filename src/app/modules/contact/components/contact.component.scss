@@ -5,4 +5,9 @@
 
 #send-button {
     margin-left: 1em;
+    background: #ffd4d4;
+}
+
+#send-button:disabled {
+    background: #ffe0e0;
 }

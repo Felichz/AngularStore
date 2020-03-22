@@ -1,9 +1,15 @@
+mat-toolbar {
+    margin-bottom: 2em;
+    color: #161616 !important;
+    background: #FF7D7D;
+}
+
 a {
     margin: 0 5px;
 }
 
 a.active {
-    background: #DDD !important;
+    background: #ffc9c9 !important;
 }
 
 div.header > nav {
@@ -12,4 +18,8 @@ div.header > nav {
 
 div.header {
     width: 100%;
+}
+
+a.cartButton {
+    background: #161616;
 }

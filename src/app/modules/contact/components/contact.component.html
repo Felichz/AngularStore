@@ -3,6 +3,6 @@
     <mat-form-field>
         <input matInput [formControl]="emailInput" id="email" type="email" placeholder="Type your email">
     </mat-form-field>
-    <button id="send-button" mat-raised-button [disabled]="emailInput.invalid" (click)="sendMail()">Send</button>
+    <button id="send-button" mat-button [disabled]="emailInput.invalid" (click)="sendMail()">Send</button>
     <br>
 </div>
