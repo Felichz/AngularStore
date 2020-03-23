@@ -9,6 +9,6 @@
             <a mat-button routerLink="/admin" routerLinkActive="active">Admin</a>
             <a mat-button routerLink="/asd" routerLinkActive="active">404</a>
         </nav>
-        <a id="cartButton" mat-button [matBadge]="productCount | async" matBadgePosition="after" routerLink="/cart"> <mat-icon>shopping_cart</mat-icon> Cart </a>
+        <a id="cartButton" mat-button [matBadge]="productCount" matBadgePosition="after" routerLink="/cart"> <mat-icon>shopping_cart</mat-icon> Cart </a>
     </div>
 </mat-toolbar>

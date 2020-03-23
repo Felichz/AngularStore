@@ -12,14 +12,14 @@ import { map } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
 
-  private productCount: Observable<number>;
+  private productCount: number;
 
   constructor(
     private cartService: CartService
   ) {
-    this.productCount = this.cartService.cart.pipe(
-      map( products => products.length )
-    );
+    this.cartService.cart.subscribe(cartProducts => {
+      this.productCount = this.cartService.totalProducts;
+    });
   }
 
   ngOnInit() {

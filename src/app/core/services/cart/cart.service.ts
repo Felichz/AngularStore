@@ -12,6 +12,8 @@ export class CartService {
   private products: CartProductInterface[] = [];
   private cartSubject: BehaviorSubject<CartProductInterface[]>;
   public cart: Observable<CartProductInterface[]>;
+  public totalProducts = 0;
+  public totalPrice = 0;
 
   constructor() {
     this.cartSubject = new BehaviorSubject<CartProductInterface[]>([]);
@@ -28,18 +30,27 @@ export class CartService {
       tempProduct.quantity = 1;
       this.products = [...this.products, tempProduct as CartProductInterface];
     }
+    this.totalPrice += newProduct.price;
+    this.totalProducts++;
+
     this.cartSubject.next(this.products);
   }
 
   removeProduct( id: string ) {
     const product: CartProductInterface = this.products.find( item => item.id === id );
 
-    if ( product.quantity > 1 ) {
-      product.quantity--;
-    } else {
-      this.products = this.products.filter( item => item.id !== id);
+    if (product) {
+      if ( product.quantity > 1 ) {
+        product.quantity--;
+      } else {
+        this.products = this.products.filter( item => item.id !== id);
+      }
+
+      this.totalPrice -= product.price;
+      this.totalProducts--;
+
+      this.cartSubject.next(this.products);
     }
-    this.cartSubject.next(this.products);
   }
 
 }

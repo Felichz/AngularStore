@@ -3,8 +3,7 @@
 <mat-horizontal-stepper>
   <mat-step label="Cart Products">
     <h2 class="step-title">Cart products</h2>
-    <div *ngIf="(cartObserver | async) as products">
-      <div *ngFor="let product of products; index as i">
+      <div *ngFor="let product of cartProducts; index as i">
         <div class="product">
           <img src="{{product.image}}" alt="Product {{i}}">
           <div class="product-info">
@@ -17,9 +16,11 @@
         </div>
         <hr>
       </div>
-      <div *ngIf="products.length === 0">Your cart is empty</div>
-      <mat-spinner *ngIf="!products"></mat-spinner>
-    </div>
+      <div *ngIf="cartProducts.length !== 0">
+        <p>Total Price: {{totalPrice | currency}}</p>
+      </div>
+      <div *ngIf="cartProducts.length === 0">Your cart is empty</div>
+      <mat-spinner *ngIf="!cartProducts"></mat-spinner>
   </mat-step>
   <mat-step label="Personal info">
     <h2 class="step-title">Personal info</h2>
