@@ -14,3 +14,32 @@ mat-spinner {
     margin: 0 auto;
     margin-top: 2em;
 }
+
+mat-horizontal-stepper {
+    max-width: 90%;
+    min-height: 50vh;
+    margin: 0 auto;
+    background: #ffffffa8;
+}
+
+.step-title {
+    margin-top: .5em;
+    text-align: center;
+}
+
+img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 15%;
+    margin-right: 1em;
+}
+
+div.product-info {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 70%;
+}
+
+div.product-info h3 {
+    margin-top: 0;
+}

@@ -1,13 +1,30 @@
-<h1>Cart products</h1>
+<h1>Your order</h1>
 
-<div class="product-grid row around-xs" *ngIf="products">
-  <div class="product col-xs-12 col-sm-6 col-md-4" *ngFor="let product of products;">
-    <app-product
-        class="cartProduct"
-        [product]="product"
-        (addToCartEvent)="addToCart($event)">
-    </app-product>
-  </div>
-</div>
-
-<mat-spinner *ngIf="!products" color="warn"></mat-spinner>
+<mat-horizontal-stepper>
+  <mat-step label="Cart Products">
+    <h2 class="step-title">Cart products</h2>
+    <div *ngIf="(cartObserver | async) as products">
+      <div *ngFor="let product of products; index as i">
+        <div class="product">
+          <img src="{{product.image}}" alt="Product {{i}}">
+          <div class="product-info">
+            <h3>{{product.title}}</h3>
+            <p>Description: {{product.description}}</p>
+            <p>Quantity: {{product.quantity}}</p>
+            <p>Price: {{product.price * product.quantity | currency}}</p>
+            <button mat-raised-button color="warn" (click)="removeProduct(product.id)">Remove</button>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div *ngIf="products.length === 0">Your cart is empty</div>
+      <mat-spinner *ngIf="!products"></mat-spinner>
+    </div>
+  </mat-step>
+  <mat-step label="Personal info">
+    <h2 class="step-title">Personal info</h2>
+  </mat-step>
+  <mat-step label="Checkout">
+    <h2 class="step-title">Checkout</h2>
+  </mat-step>
+</mat-horizontal-stepper>

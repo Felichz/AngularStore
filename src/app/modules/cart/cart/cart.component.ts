@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductInterface } from 'src/app/interfaces/product-interface';
+import { CartProductInterface } from 'src/app/interfaces/cart-product-interface';
 import { CartService } from 'src/app/core/services/cart/cart.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +11,7 @@ import { CartService } from 'src/app/core/services/cart/cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  public products: ProductInterface[];
+  public cartObserver: Observable<CartProductInterface[]>;
   public title: string;
 
   constructor( private cartService: CartService ) {
@@ -20,9 +23,10 @@ export class CartComponent implements OnInit {
   }
 
   fetchProducts() {
-    this.cartService.cart
-      .subscribe( products => {
-        this.products = products;
-      });
+    this.cartObserver = this.cartService.cart;
+  }
+
+  removeProduct( id: string ) {
+    this.cartService.removeProduct(id);
   }
 }
