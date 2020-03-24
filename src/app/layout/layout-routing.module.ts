@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 
-import { AdminGuard } from '../guards/admin.guard';
+import { AngularFireAuthGuard, redirectLoggedInTo } from '@angular/fire/auth-guard';
+
+const redirectLoggedInToAdmin = () => redirectLoggedInTo(['/home']);
 
 const routes: Routes = [
   {
@@ -30,11 +31,15 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        loadChildren: () => import('src/app/modules/login/login.module').then( m => m.LoginModule )
+        loadChildren: () => import('src/app/modules/login/login.module').then( m => m.LoginModule ),
+        canActivate: [AngularFireAuthGuard],
+        data: { authGuardPipe: redirectLoggedInToAdmin }
       },
       {
         path: 'register',
-        loadChildren: () => import('src/app/modules/register/register.module').then( m => m.RegisterModule )
+        loadChildren: () => import('src/app/modules/register/register.module').then( m => m.RegisterModule ),
+        canActivate: [AngularFireAuthGuard],
+        data: { authGuardPipe: redirectLoggedInToAdmin }
       },
       {
         path: 'cart',

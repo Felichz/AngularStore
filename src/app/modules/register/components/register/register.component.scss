@@ -5,3 +5,13 @@ div#registerForm {
 mat-card-content {
     padding: 1em;
 }
+
+.registerError {
+    padding-bottom: .5em;
+}
+
+mat-spinner {
+    display: inline-block;
+    margin-left: .5em;
+    vertical-align: middle;
+}

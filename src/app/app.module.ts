@@ -8,6 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   // Components, Pipes, Directives
@@ -21,9 +27,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [
+    AngularFireAuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

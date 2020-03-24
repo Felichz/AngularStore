@@ -13,6 +13,10 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'dashboard'
+      },
+      {
         path: 'product',
         component: null,
         children: [

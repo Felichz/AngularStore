@@ -43,7 +43,7 @@ import { HighlightDirective } from './directives/highlight/highlight.directive';
     PowPipe,
     SqrtPipe,
     // Directives
-    HighlightDirective
+    HighlightDirective,
   ]
 })
 export class SharedModule { }

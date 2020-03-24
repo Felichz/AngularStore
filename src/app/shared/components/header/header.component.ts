@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CartService } from 'src/app/core/services/cart/cart.service';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,16 +14,26 @@ import { map } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
 
   private productCount: number;
+  private logged: boolean;
 
   constructor(
-    private cartService: CartService
+    private cartService: CartService,
+    private authService: AuthService
   ) {
+    const log = this.authService.getLoggedUser()
+      .subscribe(user => {
+        this.logged = user ? true : false;
+      });
+  }
+
+  ngOnInit() {
     this.cartService.cart.subscribe(cartProducts => {
       this.productCount = this.cartService.totalProducts;
     });
   }
 
-  ngOnInit() {
+  logout() {
+    this.authService.logout();
   }
 
 }

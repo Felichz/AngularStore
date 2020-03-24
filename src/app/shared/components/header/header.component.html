@@ -4,11 +4,14 @@
             <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
             <a mat-button routerLink="/products" routerLinkActive="active">Products</a>
             <a mat-button routerLink="/contacts" routerLinkActive="active">Contact</a>
-            <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
-            <a mat-button routerLink="/register" routerLinkActive="active">Register</a>
-            <a mat-button routerLink="/admin" routerLinkActive="active">Admin</a>
+            <a mat-button *ngIf="logged === false" routerLink="/login" routerLinkActive="active">Login</a>
+            <a mat-button *ngIf="logged === false" routerLink="/register" routerLinkActive="active">Register</a>
+            <a mat-button *ngIf="logged" routerLink="/admin" routerLinkActive="active">Admin</a>
             <a mat-button routerLink="/asd" routerLinkActive="active">404</a>
         </nav>
-        <a id="cartButton" mat-button [matBadge]="productCount" matBadgePosition="after" routerLink="/cart"> <mat-icon>shopping_cart</mat-icon> Cart </a>
+        <div>
+            <a id="cartButton" mat-button [matBadge]="productCount" matBadgePosition="after" routerLink="/cart"> <mat-icon>shopping_cart</mat-icon> Cart </a>
+            <a mat-raised-button color="warn" *ngIf="logged" (click)="logout()">Logout</a>
+        </div>
     </div>
 </mat-toolbar>

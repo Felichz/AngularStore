@@ -15,3 +15,19 @@
   top: 0;
   z-index: 1;
 }
+
+#title {
+  padding-right: .5em;
+  box-shadow: 5px 0 5px -5px white;
+  border-right: 2px ridge white;
+}
+
+#loggedAs {
+  margin-left: .5em;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+#loggedAs span {
+  font-weight: 500;
+}

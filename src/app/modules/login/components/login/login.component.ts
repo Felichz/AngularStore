@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +10,18 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  loginError: any;
+  waiting = false;
 
-  constructor( private formBuilder: FormBuilder ) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+    ) {
 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5), Validators.pattern('^[a-zA-Z0-9]+$')]]
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^[a-zA-Z0-9]+$')]]
     });
   }
 
@@ -21,7 +29,19 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm( value ) {
-    console.log(value);
+    if (this.loginForm.valid) {
+      this.waiting = true;
+
+      this.authService.login(value.email, value.password)
+      .then(result => {
+        this.waiting = false;
+        this.router.navigate(['/admin']);
+      })
+      .catch(error => {
+        this.waiting = false;
+        this.loginError = error;
+      });
+    }
   }
 
   get passwordField() {

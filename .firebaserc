@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angularstore-c2cfc": {
+      "hosting": {
+        "angular-store": [
+          "angularstore-c2cfc"
+        ]
+      }
+    }
+  }
+}

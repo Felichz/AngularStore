@@ -17,11 +17,13 @@
                 </mat-form-field>
                 <div *ngIf="passwordField.dirty && passwordField.invalid">
                     <div *ngIf="passwordField.hasError('required')" class="formErrorMessage">Required field</div>
-                    <div *ngIf="passwordField.hasError('minlength')" class="formErrorMessage">The password must be at least 5 characters</div>
+                    <div *ngIf="passwordField.hasError('minlength')" class="formErrorMessage">The password must be at least 6 characters</div>
                     <div *ngIf="passwordField.hasError('pattern')" class="formErrorMessage">Only alphanumeric characters are allowed</div>
                 </div>
                 <br>
-                <button mat-raised-button type="submit">Login</button>
+                <div *ngIf="loginError" class="formErrorMessage loginError">{{loginError}}</div>
+                <button [disabled]="loginForm.invalid || waiting" mat-raised-button type="submit">Login</button>
+                <mat-spinner *ngIf="waiting" diameter="25" ></mat-spinner>
             </form>
         </mat-card-content>
     </mat-card>
