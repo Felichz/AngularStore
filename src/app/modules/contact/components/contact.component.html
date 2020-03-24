@@ -1,8 +1,15 @@
 <h2>Contact</h2>
-<div>
-    <mat-form-field>
-        <input matInput [formControl]="emailInput" id="email" type="email" placeholder="Type your email">
-    </mat-form-field>
-    <button id="send-button" mat-button [disabled]="emailInput.invalid" (click)="sendMail()">Send</button>
-    <br>
+<div id="parent">
+    <div id="child">
+        <mat-form-field>
+            <input matInput [formControl]="emailInput" id="email" type="email" placeholder="Type your email">
+        </mat-form-field>
+        <div *ngIf="emailInput.dirty && emailInput.invalid || invalidFormSubmit">
+            <div *ngIf="emailInput.hasError('required')" class="formErrorMessage">Required field</div>
+            <div *ngIf="emailInput.hasError('email')" class="formErrorMessage">Invalid email</div>
+            <br>
+        </div>
+        <button id="send-button" mat-button (click)="sendMail()">Send</button>
+        <br>
+    </div>
 </div>

@@ -7,7 +7,7 @@
                 <mat-form-field>
                     <input matInput formControlName="email" type="email" placeholder="Email">
                 </mat-form-field>
-                <div *ngIf="emailField.dirty && emailField.invalid">
+                <div *ngIf="emailField.dirty && emailField.invalid || invalidFormSubmit">
                     <div *ngIf="emailField.hasError('required')" class="formErrorMessage">Required field</div>
                     <div *ngIf="emailField.hasError('email')" class="formErrorMessage">Invalid email</div>
                 </div>
@@ -15,14 +15,18 @@
                 <mat-form-field>
                     <input matInput formControlName="password" type="password" placeholder="Password">
                 </mat-form-field>
-                <div *ngIf="passwordField.dirty && passwordField.invalid">
+                <div *ngIf="passwordField.dirty && passwordField.invalid || invalidFormSubmit">
                     <div *ngIf="passwordField.hasError('required')" class="formErrorMessage">Required field</div>
                     <div *ngIf="passwordField.hasError('minlength')" class="formErrorMessage">The password must be at least 6 characters</div>
                     <div *ngIf="passwordField.hasError('pattern')" class="formErrorMessage">Only alphanumeric characters are allowed</div>
                 </div>
                 <br>
-                <div *ngIf="loginError" class="formErrorMessage loginError">{{loginError}}</div>
-                <button [disabled]="loginForm.invalid || waiting" mat-raised-button type="submit">Login</button>
+                <div *ngIf="loginError">
+                    <div *ngIf="loginError === 'auth/user-not-found' || loginError === 'auth/wrong-password'" class="formErrorMessage">Bad credentials</div>
+                    <div *ngIf="loginError !== 'auth/user-not-found' && loginError !== 'auth/wrong-password'" class="formErrorMessage">{{loginErrorMessage}}</div>
+                    <br>
+                </div>
+                <button [disabled]="waiting" mat-raised-button type="submit">Login</button>
                 <mat-spinner *ngIf="waiting" diameter="25" ></mat-spinner>
             </form>
         </mat-card-content>

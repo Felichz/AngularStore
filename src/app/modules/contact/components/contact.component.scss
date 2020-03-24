@@ -4,10 +4,19 @@
 }
 
 #send-button {
-    margin-left: 1em;
+    display: block;
     background: #b9e4ff;
 }
 
 #send-button:disabled {
     background: #d1edff;
+}
+
+#parent {
+    text-align: center;
+}
+
+#child {
+    display: inline-block;
+    text-align: initial;
 }

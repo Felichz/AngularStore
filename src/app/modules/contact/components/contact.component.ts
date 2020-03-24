@@ -8,6 +8,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
 
+  invalidFormSubmit = false;
   emailInput: FormControl;
 
   constructor() {
@@ -26,7 +27,12 @@ export class ContactComponent implements OnInit {
   }
 
   sendMail() {
-    console.log( this.emailInput.value );
+    if (this.emailInput.valid) {
+      console.log(`Email to ${this.emailInput.value}`);
+    } else {
+      this.invalidFormSubmit = true;
+      console.log(this.invalidFormSubmit);
+    }
   }
 
 }

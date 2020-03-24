@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  loginError: any;
+  loginError: string;
+  loginErrorMessage: string;
+  invalidFormSubmit = false;
   waiting = false;
 
   constructor(
@@ -29,7 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   submitForm( value ) {
+
     if (this.loginForm.valid) {
+
       this.waiting = true;
 
       this.authService.login(value.email, value.password)
@@ -39,8 +43,13 @@ export class LoginComponent implements OnInit {
       })
       .catch(error => {
         this.waiting = false;
-        this.loginError = error;
+        this.loginError = error.code;
+        this.loginErrorMessage = error.message;
+        console.log(error);
       });
+
+    } else {
+      this.invalidFormSubmit = true;
     }
   }
 

@@ -10,7 +10,7 @@
             <a mat-button routerLink="/asd" routerLinkActive="active">404</a>
         </nav>
         <div>
-            <a id="cartButton" mat-button [matBadge]="productCount" matBadgePosition="after" routerLink="/cart"> <mat-icon>shopping_cart</mat-icon> Cart </a>
+            <a id="cartButton" mat-button [matBadge]="productCount" matBadgePosition="after" routerLink="/cart" routerLinkActive="active"> <mat-icon>shopping_cart</mat-icon> Cart </a>
             <a mat-raised-button color="warn" *ngIf="logged" (click)="logout()">Logout</a>
         </div>
     </div>

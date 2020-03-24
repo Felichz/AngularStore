@@ -7,7 +7,7 @@
                 <mat-form-field>
                     <input matInput formControlName="name" type="text" placeholder="Name">
                 </mat-form-field>
-                <div *ngIf="nameField.dirty && nameField.invalid">
+                <div *ngIf="nameField.dirty && nameField.invalid || invalidFormSubmit">
                     <div *ngIf="nameField.hasError('required')" class="formErrorMessage">Required field</div>
                     <div *ngIf="nameField.hasError('pattern')" class="formErrorMessage">Only alphabetical characters are allowed (a-z, A-Z)</div>
                 </div>
@@ -15,7 +15,7 @@
                 <mat-form-field>
                     <input matInput formControlName="email" type="email" placeholder="Email">
                 </mat-form-field>
-                <div *ngIf="emailField.dirty && emailField.invalid">
+                <div *ngIf="emailField.dirty && emailField.invalid || invalidFormSubmit">
                     <div *ngIf="emailField.hasError('required')" class="formErrorMessage">Required field</div>
                     <div *ngIf="emailField.hasError('email')" class="formErrorMessage">Invalid email</div>
                 </div>
@@ -23,14 +23,14 @@
                 <mat-form-field>
                     <input matInput formControlName="password" type="password" placeholder="Password">
                 </mat-form-field>
-                <div *ngIf="passwordField.dirty && passwordField.invalid">
+                <div *ngIf="passwordField.dirty && passwordField.invalid || invalidFormSubmit">
                     <div *ngIf="passwordField.hasError('required')" class="formErrorMessage">Required field</div>
                     <div *ngIf="passwordField.hasError('minlength')" class="formErrorMessage">The password must be at least 6 characters</div>
                     <div *ngIf="passwordField.hasError('pattern')" class="formErrorMessage">Only alphanumeric characters are allowed</div>
                 </div>
                 <br>
                 <div *ngIf="registerError" class="formErrorMessage registerError">{{registerError}}</div>
-                <button [disabled]="registerForm.invalid || waiting" mat-raised-button type="submit">Register</button>
+                <button [disabled]="waiting" mat-raised-button type="submit">Register</button>
                 <mat-spinner *ngIf="waiting" diameter="25" ></mat-spinner>
             </form>
         </mat-card-content>
