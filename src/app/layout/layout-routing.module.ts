@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 
-import { AngularFireAuthGuard, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
-const redirectLoggedInToAdmin = () => redirectLoggedInTo(['/home']);
+import { RedirectLoggedInToAdminGuard } from 'src/app/guards/redirectLoggedInToAdmin/redirect-logged-in-to-admin.guard';
 
 const routes: Routes = [
   {
@@ -32,14 +32,12 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: () => import('src/app/modules/login/login.module').then( m => m.LoginModule ),
-        canActivate: [AngularFireAuthGuard],
-        data: { authGuardPipe: redirectLoggedInToAdmin }
+        canActivate: [RedirectLoggedInToAdminGuard]
       },
       {
         path: 'register',
         loadChildren: () => import('src/app/modules/register/register.module').then( m => m.RegisterModule ),
-        canActivate: [AngularFireAuthGuard],
-        data: { authGuardPipe: redirectLoggedInToAdmin }
+        canActivate: [RedirectLoggedInToAdminGuard]
       },
       {
         path: 'cart',
@@ -50,7 +48,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
+  imports: [ RouterModule.forChild(routes)],
   exports: [ RouterModule ]
 })
 export class LayoutRoutingModule { }
