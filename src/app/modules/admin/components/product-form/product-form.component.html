@@ -9,6 +9,24 @@
                 <div class="formErrorMessage" *ngIf="idField.hasError('required')">Required field</div>
             </div>
             <br>
+            <div *ngIf="imageUrl && !waitingUpload">
+                <img [src]="imageUrl" id="uploadedImage" alt="uploaded-image">
+                <br>
+            </div>
+            <div *ngIf="waitingUpload">
+                <mat-spinner></mat-spinner>
+                <br>
+            </div>
+            <input (change)="uploadFile($event)" style="display: none;" id="fileInput" type="file" />
+            <label id="fileInputLabel" for="fileInput" class="mat-raised-button" color="primary">Upload image</label>
+            <p *ngIf="uploadComplete">Upload Complete</p>
+
+            <div *ngIf="(uploadPercentage$ | async) as uploadPercentage">
+                <p *ngIf="uploadPercentage && !uploadComplete">{{uploadPercentage}}% Uploaded</p>
+                <mat-progress-bar *ngIf="uploadPercentage && !uploadComplete" color="warn" mode="determinate" [value]="uploadPercentage"></mat-progress-bar>
+                <mat-progress-bar *ngIf="uploadComplete" mode="determinate" [value]="100"></mat-progress-bar>
+            </div>
+            <br>
             <mat-form-field>
                 <input matInput formControlName="title" type="text" placeholder="Title">
             </mat-form-field>
@@ -31,7 +49,7 @@
                 <div class="formErrorMessage" *ngIf="descriptionField.hasError('required')">Required field</div>
             </div>
             <br>
-            <button [disabled]="waiting" mat-raised-button type="submit">Send</button>
+            <button [disabled]="waiting || waitingUpload" mat-raised-button type="submit">Send</button>
             <mat-spinner *ngIf="waiting" diameter="25" ></mat-spinner>
         </form>
     </mat-card-content>

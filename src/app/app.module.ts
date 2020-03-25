@@ -10,8 +10,9 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import 'firebase/storage';
 import { environment } from 'src/environments/environment';
 
 
@@ -30,6 +31,9 @@ import { environment } from 'src/environments/environment';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireStorageModule
+  ],
+  exports: [
     AngularFireStorageModule
   ],
   providers: [

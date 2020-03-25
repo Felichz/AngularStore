@@ -30,8 +30,21 @@ mat-form-field.textarea {
     min-width: 70%;
 }
 
+img#uploadedImage {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+label#fileInputLabel {
+    margin: 1em 0;
+}
+
 mat-spinner {
     display: inline-block;
     margin-left: .5em;
     vertical-align: middle;
+}
+
+mat-progress-bar {
+    max-width: 200px;
 }

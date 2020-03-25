@@ -13,7 +13,8 @@ export const environment = {
     storageBucket: 'angularstore-c2cfc.appspot.com',
     messagingSenderId: '720187451145',
     appId: '1:720187451145:web:fcfc846b61e8dd9d8d15d8'
-  }
+  },
+  imageFolderPath: 'images'
 };
 
 /*
