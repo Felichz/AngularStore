@@ -21,14 +21,14 @@ export class CartService {
   }
 
   addProduct( newProduct: ProductInterface ) {
-    const product: CartProductInterface = this.products.find( item => item.id === newProduct.id );
+    const productInCart: CartProductInterface = this.products.find( item => item.id === newProduct.id );
 
-    if ( product ) {
-      product.quantity++;
+    if ( productInCart ) {
+      productInCart.quantity++;
     } else {
-      const tempProduct: Partial<CartProductInterface> = newProduct;
-      tempProduct.quantity = 1;
-      this.products = [...this.products, tempProduct as CartProductInterface];
+      const newCartProduct: Partial<CartProductInterface> = newProduct;
+      newCartProduct.quantity = 1;
+      this.products = [...this.products, newCartProduct as CartProductInterface];
     }
     this.totalPrice += newProduct.price;
     this.totalProducts++;
