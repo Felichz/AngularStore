@@ -15,6 +15,8 @@ import Swal from 'sweetalert2';
 export class ProductFormComponent implements OnInit {
 
   productForm: FormGroup;
+  invalidFormSubmit = false;
+  waiting = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,14 +38,23 @@ export class ProductFormComponent implements OnInit {
 
     product.id = product.id.toString();
 
-    this.productService.createProduct(product).subscribe();
+    if (this.productForm.valid) {
 
-    Swal.fire({
-      title: 'New product created!',
-      icon: 'success'
-    }).then( () => {
-      this.router.navigate(['/admin/product-list']);
-    });
+      this.waiting = true;
+
+      this.productService.createProduct(product).subscribe(response => {
+
+        this.waiting = false;
+        Swal.fire({
+          title: 'New product created!',
+          icon: 'success'
+        }).then( () => {
+          this.router.navigate(['/admin/product-list']);
+        });
+      });
+    } else {
+      this.invalidFormSubmit = true;
+    }
   }
 
   get priceField() {

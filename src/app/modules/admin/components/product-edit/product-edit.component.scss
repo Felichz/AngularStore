@@ -34,3 +34,10 @@ mat-spinner {
     margin: 0 auto;
     margin-top: 2em;
 }
+
+mat-spinner#formSubmitSpinner {
+    display: inline-block;
+    margin: initial;
+    margin-left: .5em;
+    vertical-align: middle;
+}

@@ -18,6 +18,8 @@ export class ProductEditComponent implements OnInit {
   id: string;
   ready: boolean;
   productForm: FormGroup;
+  invalidFormSubmit = false;
+  waiting = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,14 +50,24 @@ export class ProductEditComponent implements OnInit {
 
   submitForm(product: Partial<ProductInterface>, event) {
 
-    this.productService.updateProduct(this.id, product).subscribe();
+    if (this.productForm.valid) {
 
-    Swal.fire({
-      title: 'Product modified!',
-      icon: 'success'
-    }).then( () => {
-      this.router.navigate(['/admin/product-list']);
-    });
+      this.waiting = true;
+
+      this.productService.updateProduct(this.id, product).subscribe(() => {
+
+        this.waiting = false;
+        Swal.fire({
+          title: 'Product modified!',
+          icon: 'success'
+        }).then( () => {
+          this.router.navigate(['/admin/product-list']);
+        });
+      });
+
+    } else {
+      this.invalidFormSubmit = true;
+    }
   }
 
   get priceField() {

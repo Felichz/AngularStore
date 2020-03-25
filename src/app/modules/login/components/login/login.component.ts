@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
         this.waiting = false;
         this.loginError = error.code;
         this.loginErrorMessage = error.message;
-        console.log(error);
       });
 
     } else {

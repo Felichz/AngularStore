@@ -5,14 +5,14 @@
             <mat-form-field>
                 <input #titulo matInput formControlName="title" type="text" placeholder="Title">
             </mat-form-field>
-            <div *ngIf="titleField.dirty && titleField.invalid">
-                <div class="formErrorMessage" *ngIf="productForm.get('title').hasError('required') && productForm.get('title').dirty">Required field</div>
+            <div *ngIf="titleField.dirty && titleField.invalid || invalidFormSubmit">
+                <div class="formErrorMessage" *ngIf="titleField.hasError('required')">Required field</div>
             </div>
             <br>
             <mat-form-field>
                 <input matInput formControlName="price" type="number" placeholder="Price">
             </mat-form-field>
-            <div *ngIf="priceField.dirty && priceField.invalid">
+            <div *ngIf="priceField.dirty && priceField.invalid || invalidFormSubmit">
                 <div class="formErrorMessage" *ngIf="priceField.hasError('too_high')">The price cannot reach 10,000</div>
                 <div class="formErrorMessage" *ngIf="priceField.hasError('required')">Requiered field</div>
             </div>
@@ -20,11 +20,12 @@
             <mat-form-field class="textarea">
                 <textarea matInput formControlName="description" placeholder="Description"  name="" id="" cols="30" rows="10"></textarea>
             </mat-form-field>
-            <div *ngIf="descriptionField.dirty && descriptionField.invalid">
-                <div class="formErrorMessage" *ngIf="productForm.get('description').hasError('required') && productForm.get('description').dirty">Required field</div>
+            <div *ngIf="descriptionField.dirty && descriptionField.invalid || invalidFormSubmit">
+                <div class="formErrorMessage" *ngIf="descriptionField.hasError('required')">Required field</div>
             </div>
             <br>
-            <button [disabled]="productForm.invalid" mat-raised-button type="submit">Send</button>
+            <button [disabled]="waiting" mat-raised-button type="submit">Send</button>
+            <mat-spinner *ngIf="waiting" id="formSubmitSpinner" diameter="25" ></mat-spinner>
         </form>
 
         <div *ngIf="!productForm && ready">Product not found</div>
