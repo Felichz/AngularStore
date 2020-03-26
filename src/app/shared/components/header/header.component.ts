@@ -13,8 +13,8 @@ import { map } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
 
-  private productCount: number;
-  private logged: boolean;
+  public productCount: number;
+  public logged: boolean;
 
   constructor(
     private cartService: CartService,

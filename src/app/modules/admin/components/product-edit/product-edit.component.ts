@@ -98,7 +98,7 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  submitForm(product: Partial<ProductInterface>, event) {
+  submitForm(product: Partial<ProductInterface>) {
 
     if (this.productForm.valid) {
 

@@ -14,8 +14,8 @@ export class CartComponent implements OnInit, OnDestroy {
   public title: string;
 
   private cartSubscription: Subscription;
-  private cartProducts: CartProductInterface[];
-  private totalPrice = 0;
+  public cartProducts: CartProductInterface[];
+  public totalPrice = 0;
 
   constructor( private cartService: CartService ) {
     this.title = 'Angular Store';

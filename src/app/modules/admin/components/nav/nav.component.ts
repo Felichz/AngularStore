@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
       shareReplay()
     );
 
-  private loggedAs: string;
+  public loggedAs: string;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
