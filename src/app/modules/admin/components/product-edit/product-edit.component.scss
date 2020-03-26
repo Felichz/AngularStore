@@ -41,3 +41,19 @@ mat-spinner#formSubmitSpinner {
     margin-left: .5em;
     vertical-align: middle;
 }
+
+mat-spinner#uploadingFile {
+    margin: initial;
+}
+
+img#uploadedImage {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+label#fileInputLabel {
+    margin: 1em 0;
+}
+mat-progress-bar {
+    max-width: 200px;
+}
