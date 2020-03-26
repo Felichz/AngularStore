@@ -15,7 +15,7 @@ mat-spinner {
     margin-top: 2em;
 }
 
-mat-horizontal-stepper {
+div#steppers {
     max-width: 90%;
     min-height: 50vh;
     margin: 0 auto;
@@ -42,4 +42,26 @@ div.product-info {
 
 div.product-info h3 {
     margin-top: 0;
+}
+
+@media(max-width: 800px) {
+    .step-title {
+        text-align: left;
+    }
+
+    mat-vertical-stepper {
+        display: initial;
+    }
+    mat-horizontal-stepper {
+        display: none;
+    }
+}
+
+@media(min-width: 800px) {
+    mat-vertical-stepper {
+        display: none;
+    }
+    mat-horizontal-stepper {
+        display: initial;
+    }
 }

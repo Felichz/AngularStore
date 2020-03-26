@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common'; // NgIf NgFor
 
 import { HomeComponent } from './components/home/home.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -14,7 +13,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ],
     imports: [
         HomeRoutingModule,
-        CommonModule,
         SharedModule
     ]
 })

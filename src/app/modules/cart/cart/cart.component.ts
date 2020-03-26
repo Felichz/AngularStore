@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 })
 export class CartComponent implements OnInit, OnDestroy {
   public title: string;
+  public orientation = 'vertical';
 
   private cartSubscription: Subscription;
   public cartProducts: CartProductInterface[];

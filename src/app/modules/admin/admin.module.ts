@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
-import { MaterialModule } from 'src/app/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
@@ -22,11 +21,10 @@ import { ProductListComponent } from './components/product-list/product-list.com
     ProductEditComponent
   ],
   imports: [
-    CommonModule,
     AdminRoutingModule,
-    MaterialModule,
     ReactiveFormsModule,
-    LayoutModule
+    LayoutModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

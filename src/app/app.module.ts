@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
+import { CoreModule } from 'src/app/core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -24,9 +24,9 @@ import { environment } from 'src/environments/environment';
   // Modules
   imports: [
     BrowserModule,
-    RouterModule,
     AppRoutingModule,
     FormsModule,
+    CoreModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

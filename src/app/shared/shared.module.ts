@@ -35,6 +35,9 @@ import { HighlightDirective } from './directives/highlight/highlight.directive';
     MaterialModule
   ],
   exports: [
+    // Modules
+    CommonModule,
+    MaterialModule,
     // Components
     ProductComponent,
     HeaderComponent,

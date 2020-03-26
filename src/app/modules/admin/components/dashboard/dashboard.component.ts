@@ -29,5 +29,10 @@ export class DashboardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  viewportWidth = 0;
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+
+    this.viewportWidth = window.innerWidth;
+  }
 }

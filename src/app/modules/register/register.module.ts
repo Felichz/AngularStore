@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { RegisterComponent } from './components/register/register.component';
-import { MaterialModule } from 'src/app/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -12,10 +11,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent
   ],
   imports: [
-    CommonModule,
     RegisterRoutingModule,
-    MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class RegisterModule { }

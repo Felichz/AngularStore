@@ -1,17 +1,32 @@
 <mat-toolbar>
-    <div class="row between-xs middle-xs header">
+    <div class="header">
         <nav>
-            <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
-            <a mat-button routerLink="/products" routerLinkActive="active">Products</a>
-            <a mat-button routerLink="/contacts" routerLinkActive="active">Contact</a>
-            <a mat-button *ngIf="logged === false" routerLink="/login" routerLinkActive="active">Login</a>
-            <a mat-button *ngIf="logged === false" routerLink="/register" routerLinkActive="active">Register</a>
-            <a mat-button *ngIf="logged" routerLink="/admin" routerLinkActive="active">Admin</a>
-            <a mat-button routerLink="/asd" routerLinkActive="active">404</a>
+            <div>
+                <button class="nav-menu" mat-icon-button [matMenuTriggerFor]="appMenu">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>
+                <a class="hide-on-mobile" mat-button routerLink="/home" routerLinkActive="active">Home</a>
+                <a class="hide-on-mobile" mat-button routerLink="/products" routerLinkActive="active">Products</a>
+                <a class="hide-on-mobile" mat-button routerLink="/contacts" routerLinkActive="active">Contact</a>
+                <a mat-button *ngIf="logged === false" routerLink="/login" routerLinkActive="active">Login</a>
+                <a mat-button *ngIf="logged === false" routerLink="/register" routerLinkActive="active">Register</a>
+                <a mat-button *ngIf="logged" routerLink="/admin" routerLinkActive="active">Admin</a>
+                <a class="hide-on-mobile" mat-button routerLink="/asd" routerLinkActive="active">404</a>
+            </div>
+
+            <div class="right-buttons">
+                <a mat-raised-button color="warn" *ngIf="logged" (click)="logout()">Logout</a>
+                <a id="cartButton" mat-button [matBadge]="productCount" matBadgePosition="after" routerLink="/cart" routerLinkActive="active"> <mat-icon>shopping_cart</mat-icon> Cart </a>
+            </div>
         </nav>
-        <div>
-            <a id="cartButton" mat-button [matBadge]="productCount" matBadgePosition="after" routerLink="/cart" routerLinkActive="active"> <mat-icon>shopping_cart</mat-icon> Cart </a>
-            <a mat-raised-button color="warn" *ngIf="logged" (click)="logout()">Logout</a>
-        </div>
     </div>
 </mat-toolbar>
+
+<mat-menu #appMenu="matMenu">
+    <a mat-menu-item routerLink="/home" routerLinkActive="active"><mat-icon style="margin: 0;">home</mat-icon>Home</a>
+    <a mat-menu-item routerLink="/products" routerLinkActive="active"><mat-icon>storefront</mat-icon>Products</a>
+    <a mat-menu-item routerLink="/contacts" routerLinkActive="active"><mat-icon>email</mat-icon>Contact</a>
+    <a mat-menu-item routerLink="/asd" routerLinkActive="active"><mat-icon>cloud_off</mat-icon> 404</a>
+</mat-menu>

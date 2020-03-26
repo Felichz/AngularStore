@@ -1,31 +1,63 @@
 <h1>Your order</h1>
 
-<mat-horizontal-stepper>
-  <mat-step label="Cart Products">
-    <h2 class="step-title">Cart products</h2>
-      <div *ngFor="let product of cartProducts; index as i">
-        <div class="product">
-          <img src="{{product.image}}" alt="Product {{i}}">
-          <div class="product-info">
-            <h3>{{product.title}}</h3>
-            <p>Description: {{product.description}}</p>
-            <p>Quantity: {{product.quantity}}</p>
-            <p>Price: {{product.price * product.quantity | currency}}</p>
-            <button mat-raised-button color="warn" (click)="removeProduct(product.id)">Remove</button>
+<div id="steppers">
+  <mat-horizontal-stepper>
+    <mat-step label="Cart Products">
+      <h2 class="step-title">Cart products</h2>
+        <div *ngFor="let product of cartProducts; index as i">
+          <div class="product">
+            <img src="{{product.image}}" alt="Product {{i}}">
+            <div class="product-info">
+              <h3>{{product.title}}</h3>
+              <p>Description: {{product.description}}</p>
+              <p>Quantity: {{product.quantity}}</p>
+              <p>Price: {{product.price * product.quantity | currency}}</p>
+              <button mat-raised-button color="warn" (click)="removeProduct(product.id)">Remove</button>
+            </div>
           </div>
+          <hr>
         </div>
-        <hr>
-      </div>
-      <div *ngIf="cartProducts.length !== 0">
-        <p>Total Price: {{totalPrice | currency}}</p>
-      </div>
-      <div *ngIf="cartProducts.length === 0">Your cart is empty</div>
-      <mat-spinner *ngIf="!cartProducts"></mat-spinner>
-  </mat-step>
-  <mat-step label="Personal info">
-    <h2 class="step-title">Personal info</h2>
-  </mat-step>
-  <mat-step label="Checkout">
-    <h2 class="step-title">Checkout</h2>
-  </mat-step>
-</mat-horizontal-stepper>
+        <div *ngIf="cartProducts.length !== 0">
+          <p>Total Price: {{totalPrice | currency}}</p>
+        </div>
+        <div *ngIf="cartProducts.length === 0">Your cart is empty</div>
+        <mat-spinner *ngIf="!cartProducts"></mat-spinner>
+    </mat-step>
+    <mat-step label="Personal info">
+      <h2 class="step-title">Personal info</h2>
+    </mat-step>
+    <mat-step label="Checkout">
+      <h2 class="step-title">Checkout</h2>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+  <mat-vertical-stepper>
+    <mat-step label="Cart Products">
+      <h2 class="step-title">Cart products</h2>
+        <div *ngFor="let product of cartProducts; index as i">
+          <div class="product">
+            <img src="{{product.image}}" alt="Product {{i}}">
+            <div class="product-info">
+              <h3>{{product.title}}</h3>
+              <p>Description: {{product.description}}</p>
+              <p>Quantity: {{product.quantity}}</p>
+              <p>Price: {{product.price * product.quantity | currency}}</p>
+              <button mat-raised-button color="warn" (click)="removeProduct(product.id)">Remove</button>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div *ngIf="cartProducts.length !== 0">
+          <p>Total Price: {{totalPrice | currency}}</p>
+        </div>
+        <div *ngIf="cartProducts.length === 0">Your cart is empty</div>
+        <mat-spinner *ngIf="!cartProducts"></mat-spinner>
+    </mat-step>
+    <mat-step label="Personal info">
+      <h2 class="step-title">Personal info</h2>
+    </mat-step>
+    <mat-step label="Checkout">
+      <h2 class="step-title">Checkout</h2>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>
