@@ -46,6 +46,8 @@ export class ProductComponent implements OnInit {
                 this.productCount = null;
             }
         });
+
+        console.log(this.product.image);
     }
 
     addToCartClicked() {

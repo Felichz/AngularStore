@@ -19,7 +19,6 @@ import { Observable } from 'rxjs';
 export class ProductFormComponent implements OnInit {
 
   uploadPercentage$: Observable<any>;
-  imageFolderPath = environment.imageFolderPath;
   imageUrl: string;
   productForm: FormGroup;
   invalidFormSubmit = false;
@@ -54,9 +53,10 @@ export class ProductFormComponent implements OnInit {
     const date = new Date();
     const time = date.getTime();
     const fileName = time + file.name;
-    const imagePath = `${this.imageFolderPath}/${fileName}`;
 
-    // Start upload file task
+    const imagePath = `${environment.imageFolderPath}/${fileName}`;
+
+    // Start file upload task
     const task = this.storage.upload(imagePath, file);
 
     // Get upload progress

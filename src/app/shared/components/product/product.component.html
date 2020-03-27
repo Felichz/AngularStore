@@ -5,7 +5,7 @@
     <mat-card-subtitle>
         {{today | date:'d MMM, y'}}
     </mat-card-subtitle>
-    <div class="product-image" [ngStyle]="{'background-image': 'url(' + product.image + ')'}">
+    <div class="product-image" [ngStyle]="{'background-image': 'url(\'' + product.image + '\')'}">
     </div>
     <mat-card-content>
         <p>
