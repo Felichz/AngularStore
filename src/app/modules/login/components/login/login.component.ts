@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       this.waiting = true;
 
       this.authService.login(value.email, value.password)
-      .then(result => {
+      .then(() => {
         this.waiting = false;
         this.router.navigate(['/admin']);
       })
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         this.loginError = error.code;
         this.loginErrorMessage = error.message;
       });
-
     } else {
       this.invalidFormSubmit = true;
     }

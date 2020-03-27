@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
-import { Observable, fromEvent } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +17,12 @@ export class HeaderComponent implements OnInit {
   public productCount: number;
   public showFixedCart: boolean;
   public fixedCartOpacity: number;
+  public shopping: boolean;
 
   constructor(
     private cartService: CartService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     const log = this.authService.getLoggedUser()
       .subscribe(user => {
@@ -33,16 +35,37 @@ export class HeaderComponent implements OnInit {
       this.productCount = this.cartService.totalProducts;
     });
 
-    const minScroll = 65;
+    this.startFixedCart();
+  }
 
-    this.showFixedCart = window.scrollY > minScroll;
-    this.fixedCartOpacity = (1 / 100) * (window.scrollY - minScroll);
+  startFixedCart() {
+
+    this.router.events.subscribe(events => {
+      if (events instanceof NavigationEnd) {
+        if (events.url === '/products') {
+          this.shopping = true;
+        } else {
+          this.shopping = false;
+        }
+      }
+    });
+
+    this.updateFixedCart();
 
     fromEvent(window, 'scroll').subscribe(data => {
+      this.updateFixedCart();
+    });
+  }
+
+  updateFixedCart() {
+    if (this.shopping) {
+      const minScroll = 65;
 
       this.showFixedCart = window.scrollY > 65;
       this.fixedCartOpacity = (1 / 100) * (window.scrollY - minScroll);
-    });
+    } else {
+      this.showFixedCart = false;
+    }
   }
 
   logout() {
