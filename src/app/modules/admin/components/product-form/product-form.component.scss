@@ -48,3 +48,20 @@ mat-spinner {
 mat-progress-bar {
     max-width: 200px;
 }
+
+@media (max-width: 800px) {
+    mat-card {
+        margin: 0;
+        width: 100%;
+    }
+
+    img#uploadedImage {
+        display: block;
+        margin: 0 auto;
+    }
+
+    mat-spinner#uploadingFile {
+        display: block;
+        margin: 0 auto;
+    }
+}

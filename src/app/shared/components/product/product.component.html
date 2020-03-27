@@ -19,7 +19,7 @@
             <div class="product-row row around-xs">
                 <div class="product-actions">
                     <a [routerLink]="['/products', product.id]"><button mat-raised-button>Details</button></a>
-                    <button class="addToCartButton" mat-raised-button (click)="addToCartClicked()">Add to cart</button>
+                    <button class="addToCartButton" mat-raised-button [matBadge]="productCount" matBadgePosition="after" (click)="addToCartClicked()">Add to cart</button>
                 </div>
             </div>
     </mat-card-actions>

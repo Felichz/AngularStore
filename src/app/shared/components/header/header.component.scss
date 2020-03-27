@@ -25,8 +25,20 @@ div.header {
     width: 100%;
 }
 
-a#cartButton {
+.cartButton {
     margin-right: .8em;
+}
+
+.cartButtonFixed {
+    background: white;
+    position: fixed;
+    bottom: 10px;
+    right: 0px;
+    z-index: 999;
+}
+
+.cartButtonFixed.active {
+    display: none;
 }
 
 nav div {
@@ -50,6 +62,11 @@ nav div {
     margin: 0;
 }
 
+#mobile-admin {
+    color: #3f51b5;
+    background: #3f51b51f;
+}
+
 @media (max-width: 800px) {
     .hide-on-mobile {
         display: none;
@@ -58,8 +75,22 @@ nav div {
     .nav-menu {
         display: initial;
     }
-}
 
-@media (min-width: 800px) {
-    
+    mat-toolbar {
+        padding: .7em 0;
+    }
+
+    .header > nav {
+        margin-left: 3px !important;
+        margin-right: 11px;
+    }
+
+    mat-icon {
+        margin: 0;
+        padding: 0;
+    }
+
+    .mat-button {
+        margin: 0 2px;
+    }
 }

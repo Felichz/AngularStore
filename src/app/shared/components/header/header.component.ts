@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
-import { Observable } from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -13,8 +13,10 @@ import { map } from 'rxjs/operators';
 })
 export class HeaderComponent implements OnInit {
 
-  public productCount: number;
   public logged: boolean;
+  public productCount: number;
+  public showFixedCart: boolean;
+  public fixedCartOpacity: number;
 
   constructor(
     private cartService: CartService,
@@ -26,9 +28,20 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.cartService.cart.subscribe(cartProducts => {
       this.productCount = this.cartService.totalProducts;
+    });
+
+    const minScroll = 65;
+
+    this.showFixedCart = window.scrollY > minScroll;
+    this.fixedCartOpacity = (1 / 100) * (window.scrollY - minScroll);
+
+    fromEvent(window, 'scroll').subscribe(data => {
+
+      this.showFixedCart = window.scrollY > 65;
+      this.fixedCartOpacity = (1 / 100) * (window.scrollY - minScroll);
     });
   }
 
