@@ -18,6 +18,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const matModules = [
   MatBadgeModule,
@@ -37,7 +38,8 @@ const matModules = [
   MatRadioModule,
   MatProgressSpinnerModule,
   MatStepperModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatExpansionModule
 ];
 
 @NgModule({

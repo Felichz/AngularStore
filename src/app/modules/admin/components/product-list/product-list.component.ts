@@ -3,6 +3,7 @@ import { ProductInterface } from 'src/app/interfaces/product-interface';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 
 import Swal from 'sweetalert2';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -11,13 +12,26 @@ import Swal from 'sweetalert2';
 })
 export class ProductListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'title', 'price', 'description', 'actions'];
+  displayedColumns: string[] = ['image', 'id', 'title', 'price', 'description', 'actions'];
   products: ProductInterface[];
+
+  maxMobileWidth = 900;
+  mobileList: boolean;
 
   constructor( private productsService: ProductsService ) { }
 
   ngOnInit() {
       this.fetchProducts();
+
+      this.checkWindowWidth();
+
+      fromEvent(window, 'resize').subscribe(() => {
+        this.checkWindowWidth();
+      });
+  }
+
+  checkWindowWidth() {
+    this.mobileList = window.innerWidth < this.maxMobileWidth;
   }
 
   fetchProducts() {
