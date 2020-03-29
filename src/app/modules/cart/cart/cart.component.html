@@ -1,7 +1,9 @@
 <h1>Your order</h1>
 
 <div id="steppers">
-  <mat-horizontal-stepper>
+
+<!-- Desktop version -->
+<mat-horizontal-stepper>
     <mat-step label="Cart Products">
       <h2 class="step-title">Cart products</h2>
         <div *ngFor="let product of cartProducts; index as i">
@@ -9,7 +11,7 @@
             <img src="{{product.image}}" alt="Product {{i}}">
             <div class="product-info">
               <h3>{{product.title}}</h3>
-              <p>Description: {{product.description}}</p>
+              <p>{{product.description}}</p>
               <p>Quantity: {{product.quantity}}</p>
               <p>Price: {{product.price * product.quantity | currency}}</p>
               <button mat-raised-button color="warn" (click)="removeProduct(product.id)">Remove</button>
@@ -31,15 +33,19 @@
     </mat-step>
   </mat-horizontal-stepper>
   
+<!-- Mobile version -->
   <mat-vertical-stepper>
     <mat-step label="Cart Products">
       <h2 class="step-title">Cart products</h2>
         <div *ngFor="let product of cartProducts; index as i">
           <div class="product">
-            <img src="{{product.image}}" alt="Product {{i}}">
+            <h3>{{product.title}}</h3>
+            <div class="img-container">
+              <img src="{{product.image}}" alt="Product {{i}}">
+            </div>
+            <br>
             <div class="product-info">
-              <h3>{{product.title}}</h3>
-              <p>Description: {{product.description}}</p>
+              <p>{{product.description}}</p>
               <p>Quantity: {{product.quantity}}</p>
               <p>Price: {{product.price * product.quantity | currency}}</p>
               <button mat-raised-button color="warn" (click)="removeProduct(product.id)">Remove</button>
@@ -60,4 +66,5 @@
       <h2 class="step-title">Checkout</h2>
     </mat-step>
   </mat-vertical-stepper>
+
 </div>

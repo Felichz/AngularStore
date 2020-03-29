@@ -55,6 +55,19 @@ div.product-info h3 {
     mat-horizontal-stepper {
         display: none;
     }
+
+    .product-info {
+        min-width: 100%;
+    }
+
+    .img-container {
+        text-align: center;
+    }
+
+    img {
+        max-width: 150px;
+        max-height: 150px;
+    }
 }
 
 @media(min-width: 800px) {
