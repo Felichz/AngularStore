@@ -34,3 +34,9 @@ body {
 .mat-menu-panel {
   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, .4);
 }
+
+// Duplicated components bug fix (temp forced workaround)
+app-product-form:last-child,
+app-product-edit:last-child {
+  display: none;
+}
