@@ -29,6 +29,8 @@ mat-expansion-panel {
 }
 
 mat-expansion-panel mat-panel-title {
+    display: block;
+    text-align: center;
     font-size: 20px;
 }
 
