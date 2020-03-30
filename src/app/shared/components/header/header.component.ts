@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.cartService.cart.subscribe(cartProducts => {
       this.productCount = this.cartService.totalProducts;
     });

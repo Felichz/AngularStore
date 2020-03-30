@@ -33,7 +33,6 @@ export class ProductFormComponent implements OnInit {
     private storage: AngularFireStorage
   ) {
     this.productForm = this.formBuilder.group({
-      id: ['', [ Validators.required ]],
       image: [''],
       title: ['', [ Validators.required ]],
       price: ['', [ Validators.required, MyValidators.IsValidPrice ]],
@@ -85,13 +84,11 @@ export class ProductFormComponent implements OnInit {
 
   submitForm(product) {
 
-    product.id = product.id.toString();
-
     if (this.productForm.valid) {
 
       this.waiting = true;
 
-      this.productService.createProduct(product).subscribe(response => {
+      this.productService.createProduct(product).then(() => {
 
         this.waiting = false;
         Swal.fire({
@@ -108,10 +105,6 @@ export class ProductFormComponent implements OnInit {
 
   get priceField() {
     return this.productForm.get('price');
-  }
-
-  get idField() {
-    return this.productForm.get('id');
   }
 
   get imageField() {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductInterface } from 'src/app/interfaces/product-interface';
 import { ProductsService } from 'src/app/core/services/products/products.service';
+import 'src/environments/environment';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 import Swal from 'sweetalert2';
 import { fromEvent } from 'rxjs';
@@ -18,7 +20,10 @@ export class ProductListComponent implements OnInit {
   maxMobileWidth = 900;
   mobileList: boolean;
 
-  constructor( private productsService: ProductsService ) { }
+  constructor(
+    private productsService: ProductsService,
+    private storage: AngularFireStorage
+    ) { }
 
   ngOnInit() {
       this.fetchProducts();
@@ -45,10 +50,17 @@ export class ProductListComponent implements OnInit {
   deleteProduct( id: string ) {
 
     const executeDelete = () => {
-      this.productsService.deleteProduct( id ).subscribe();
+      this.productsService.getProduct(id).subscribe(product => {
+        const imgRef = this.storage.storage.refFromURL(product.image);
+        imgRef.delete();
+      });
 
-      this.products = this.products.filter( product => {
-        return product.id !== id;
+      this.productsService.deleteProduct(id).then(() => {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        );
       });
     };
 
@@ -63,12 +75,6 @@ export class ProductListComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         executeDelete();
-
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        );
       }
     });
 

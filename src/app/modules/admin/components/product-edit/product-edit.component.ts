@@ -104,7 +104,7 @@ export class ProductEditComponent implements OnInit {
 
       this.waiting = true;
 
-      this.productService.updateProduct(this.id, product).subscribe(() => {
+      this.productService.updateProduct(this.id, product).then(() => {
 
         this.waiting = false;
         Swal.fire({

@@ -2,13 +2,6 @@
     <mat-card-title>Create Product</mat-card-title>
     <mat-card-content>
         <form [formGroup]="productForm" (ngSubmit)="submitForm(productForm.value)">
-            <mat-form-field>
-                <input matInput formControlName="id" type="number" placeholder="ID">
-            </mat-form-field>
-            <div *ngIf="idField.dirty && idField.invalid || invalidFormSubmit">
-                <div class="formErrorMessage" *ngIf="idField.hasError('required')">Required field</div>
-            </div>
-            <br>
             <div *ngIf="imageUrl && !waitingUpload">
                 <img [src]="imageUrl" id="uploadedImage" alt="uploaded-image">
                 <br>
