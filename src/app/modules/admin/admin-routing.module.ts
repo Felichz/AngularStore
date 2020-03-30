@@ -13,22 +13,12 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       {
-        path: '',
-        redirectTo: 'dashboard'
+        path: 'product/create',
+        component: ProductFormComponent
       },
       {
-        path: 'product',
-        component: null,
-        children: [
-          {
-            path: 'create',
-            component: ProductFormComponent
-          },
-          {
-            path: 'edit/:id',
-            component: ProductEditComponent
-          }
-        ]
+        path: 'product/edit/:id',
+        component: ProductEditComponent
       },
       {
         path: 'product-list',

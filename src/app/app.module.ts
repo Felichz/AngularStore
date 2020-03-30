@@ -33,9 +33,6 @@ import { environment } from 'src/environments/environment';
     AngularFireAuthModule,
     AngularFireStorageModule
   ],
-  exports: [
-    AngularFireStorageModule
-  ],
   providers: [
     AngularFireAuthGuard
   ],
