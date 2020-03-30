@@ -2,6 +2,7 @@
     <div class="header">
         <nav>
             <div>
+                <!-- Mobile menu icon -->
                 <button class="nav-menu" mat-icon-button [matMenuTriggerFor]="appMenu">
                     <mat-icon>menu</mat-icon>
                 </button>
@@ -24,6 +25,7 @@
     </div>
 </mat-toolbar>
 
+<!-- Mobile menu -->
 <mat-menu #appMenu="matMenu">
     <a mat-menu-item routerLink="/home" routerLinkActive="active"><mat-icon style="margin: 0;">home</mat-icon>Home</a>
     <a mat-menu-item *ngIf="logged" routerLink="/admin" routerLinkActive="active" id="mobile-admin">
@@ -35,4 +37,5 @@
     <a mat-menu-item routerLink="/asd" routerLinkActive="active"><mat-icon>cloud_off</mat-icon> 404</a>
 </mat-menu>
 
+<!-- Fixed -->
 <a class="cartButton cartButtonFixed" mat-raised-button *ngIf="showFixedCart" [ngStyle]="{opacity: fixedCartOpacity}" [matBadge]="productCount" matBadgePosition="before" routerLink="/cart" routerLinkActive="active"> <mat-icon>shopping_cart</mat-icon> Cart </a>
