@@ -1,29 +1,33 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class AuthService {
+    constructor(private afa: AngularFireAuth) {}
 
-  constructor(
-    private afa: AngularFireAuth
-  ) { }
+    createUser(
+        email: string,
+        password: string
+    ): Promise<firebase.auth.UserCredential> {
+        return this.afa.createUserWithEmailAndPassword(email, password);
+    }
 
-  createUser(email: string, password: string) {
-    return this.afa.createUserWithEmailAndPassword(email, password);
-  }
+    login(
+        email: string,
+        password: string
+    ): Promise<firebase.auth.UserCredential> {
+        return this.afa.signInWithEmailAndPassword(email, password);
+    }
 
-  login(email: string, password: string) {
-    return this.afa.signInWithEmailAndPassword(email, password);
-  }
+    getLoggedUser(): Observable<firebase.User> {
+        return this.afa.user;
+    }
 
-  getLoggedUser() {
-    return this.afa.user;
-  }
-
-  logout() {
-    this.afa.signOut();
-  }
+    logout(): Promise<void> {
+        return this.afa.signOut();
+    }
 }
