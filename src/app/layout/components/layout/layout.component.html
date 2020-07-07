@@ -1,6 +1,10 @@
 <div class="layout-container">
-    <app-header></app-header>
-    <!-- Load elements corresponding to the current route -->
-    <router-outlet id="main"></router-outlet>
-    <app-footer></app-footer>
+    <div class="top-content">
+        <app-header></app-header>
+        <!-- Load elements corresponding to the current route -->
+        <router-outlet id="main"></router-outlet>
+    </div>
+    <div class="bottom-content">
+        <app-footer></app-footer>
+    </div>
 </div>

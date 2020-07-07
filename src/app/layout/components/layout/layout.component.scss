@@ -1,7 +1,8 @@
-div.layout-container {
-    position: relative;
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 100vh;
-    padding-bottom: 10em;
     background: #e5f5ff;
     color: #161616;
 }
