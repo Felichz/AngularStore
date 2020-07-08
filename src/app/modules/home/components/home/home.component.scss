@@ -1,3 +1,22 @@
-div {
-    padding-bottom: 2.5rem;
+:host {
+    min-height: inherit;
+}
+
+.container {
+    display: grid;
+    box-sizing: border-box;
+    min-height: inherit;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr 3fr;
+    grid-gap: 1em;
+    padding: 1em;
+}
+
+.box {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.big-one {
+    grid-column: 1 / 3;
 }
