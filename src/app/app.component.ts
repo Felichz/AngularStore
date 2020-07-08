@@ -45,7 +45,15 @@ export class AppComponent {
 
                         const expires = new Date();
                         expires.setDate(expires.getDate() + 1);
-                        this.cookieService.set('autoLogged', '1', expires);
+                        this.cookieService.set(
+                            'autoLogged',
+                            '1',
+                            expires,
+                            null,
+                            null,
+                            true,
+                            'Strict'
+                        );
                     } catch (e) {
                         if (e.code === 'auth/user-not-found') {
                             await this.authService.createUser(
