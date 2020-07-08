@@ -30,7 +30,6 @@ export class AppComponent {
             .getLoggedUser()
             .pipe(take(1))
             .subscribe(async (user) => {
-                console.log('logged? ', !!user);
                 if (!user) {
                     try {
                         const credentials = await this.authService.login(
@@ -49,7 +48,6 @@ export class AppComponent {
                         this.cookieService.set('autoLogged', '1', expires);
                     } catch (e) {
                         if (e.code === 'auth/user-not-found') {
-                            console.log('user notfound');
                             await this.authService.createUser(
                                 this.demoEmail,
                                 this.demoPwd
