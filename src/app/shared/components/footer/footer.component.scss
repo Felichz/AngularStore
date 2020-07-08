@@ -1,7 +1,11 @@
 footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    padding: 3em 0;
+    height: 150px;
+    box-sizing: border-box;
     background: #161616;
-    color: #63c3ff;
+    color: #eee;
     text-align: center;
 }

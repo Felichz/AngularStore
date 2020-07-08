@@ -1,11 +1,12 @@
+@import 'src/app/shared/variables.scss';
+
 :host {
-    padding: 2em;
     text-align: center;
 }
 
 #send-button {
     display: block;
-    background: #b9e4ff;
+    background: $primary-color-light;
 }
 
 #send-button:disabled {

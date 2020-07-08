@@ -1,8 +1,15 @@
+@import 'src/app/shared/variables.scss';
+
 .layout-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     min-height: 100vh;
-    background: #e5f5ff;
-    color: #161616;
+    background: $bg-color;
+    color: $font-color;
+}
+
+.main-content {
+    // box-sizing: border-box;
+    // 100vh - Header height - Footer Height
+    box-sizing: border-box;
+    min-height: calc(100vh - 64px - 150px);
+    width: 100%;
 }

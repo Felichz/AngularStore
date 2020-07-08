@@ -1,12 +1,13 @@
+@import 'src/app/shared/variables.scss';
+
 mat-toolbar {
-    height: 100%;
-    padding: .7em .5em;
-    margin-bottom: 2em;
+    height: 64px;
 }
 
-mat-toolbar, .mat-menu-content {
-    color: #161616 !important;
-    background: #63C3FF;
+mat-toolbar,
+.mat-menu-content {
+    color: $font-color !important;
+    background: $primary-color;
 }
 
 a {
@@ -14,7 +15,7 @@ a {
 }
 
 a.active {
-    background: #b9e4ff !important;
+    background: $primary-color-light !important;
 }
 
 div.header > nav {
@@ -26,7 +27,7 @@ div.header {
 }
 
 .cartButton {
-    margin-right: .8em;
+    margin-right: 0.8em;
 }
 
 .cartButtonFixed {
@@ -73,7 +74,7 @@ nav div {
     }
 
     mat-toolbar {
-        padding: .7em 0;
+        padding: 0.7em 0;
     }
 
     .header > nav {
