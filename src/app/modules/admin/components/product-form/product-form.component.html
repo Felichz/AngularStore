@@ -1,49 +1,133 @@
 <mat-card>
     <mat-card-title>Create Product</mat-card-title>
     <mat-card-content>
-        <form [formGroup]="productForm" (ngSubmit)="submitForm(productForm.value)">
+        <form
+            [formGroup]="productForm"
+            (ngSubmit)="submitForm(productForm.value)"
+        >
             <div *ngIf="imageUrl && !waitingUpload">
-                <img [src]="imageUrl" id="uploadedImage" alt="uploaded-image">
-                <br>
+                <img [src]="imageUrl" id="uploadedImage" alt="uploaded-image" />
+                <br />
             </div>
             <div *ngIf="waitingUpload">
                 <mat-spinner id="uploadingFile"></mat-spinner>
-                <br>
+                <br />
             </div>
-            <input (change)="uploadFile($event)" style="display: none;" id="fileInput" type="file" />
-            <label id="fileInputLabel" for="fileInput" class="mat-raised-button" color="primary">Upload image</label>
+            <input
+                (change)="uploadFile($event)"
+                style="display: none;"
+                id="fileInput"
+                type="file"
+            />
+            <label
+                id="fileInputLabel"
+                for="fileInput"
+                class="mat-raised-button"
+                color="primary"
+                >Upload image</label
+            >
             <p *ngIf="uploadComplete">Upload Complete</p>
 
-            <div *ngIf="(uploadPercentage$ | async) as uploadPercentage">
-                <p *ngIf="uploadPercentage && !uploadComplete">{{uploadPercentage}}% Uploaded</p>
-                <mat-progress-bar *ngIf="uploadPercentage && !uploadComplete" color="warn" mode="determinate" [value]="uploadPercentage"></mat-progress-bar>
-                <mat-progress-bar *ngIf="uploadComplete" mode="determinate" [value]="100"></mat-progress-bar>
+            <div *ngIf="uploadPercentage$ | async as uploadPercentage">
+                <p *ngIf="uploadPercentage && !uploadComplete">
+                    {{ uploadPercentage }}% Uploaded
+                </p>
+                <mat-progress-bar
+                    *ngIf="uploadPercentage && !uploadComplete"
+                    color="warn"
+                    mode="determinate"
+                    [value]="uploadPercentage"
+                ></mat-progress-bar>
+                <mat-progress-bar
+                    *ngIf="uploadComplete"
+                    mode="determinate"
+                    [value]="100"
+                ></mat-progress-bar>
             </div>
-            <br>
+            <br />
             <mat-form-field>
-                <input matInput formControlName="title" type="text" placeholder="Title">
+                <input
+                    matInput
+                    formControlName="title"
+                    type="text"
+                    placeholder="Title"
+                />
             </mat-form-field>
-            <div *ngIf="titleField.dirty && titleField.invalid || invalidFormSubmit">
-                <div class="formErrorMessage" *ngIf="titleField.hasError('required')">Required field</div>
+            <div
+                *ngIf="
+                    (titleField.dirty && titleField.invalid) ||
+                    invalidFormSubmit
+                "
+            >
+                <div
+                    class="formErrorMessage"
+                    *ngIf="titleField.hasError('required')"
+                >
+                    Required field
+                </div>
             </div>
-            <br>
+            <br />
             <mat-form-field>
-                <input matInput formControlName="price" type="number" placeholder="Price">
+                <input
+                    matInput
+                    formControlName="price"
+                    type="number"
+                    placeholder="Price"
+                />
             </mat-form-field>
-            <div *ngIf="priceField.dirty && priceField.invalid || invalidFormSubmit">
-                <div class="formErrorMessage" *ngIf="priceField.hasError('too_high')">The price cannot reach 10,000</div>
-                <div class="formErrorMessage" *ngIf="priceField.hasError('required')">Requiered field</div>
+            <div
+                *ngIf="
+                    (priceField.dirty && priceField.invalid) ||
+                    invalidFormSubmit
+                "
+            >
+                <div
+                    class="formErrorMessage"
+                    *ngIf="priceField.hasError('too_high')"
+                >
+                    The price cannot reach 10,000
+                </div>
+                <div
+                    class="formErrorMessage"
+                    *ngIf="priceField.hasError('required')"
+                >
+                    Requiered field
+                </div>
             </div>
-            <br>
+            <br />
             <mat-form-field class="textarea">
-                <textarea matInput formControlName="description" placeholder="Description"  name="" id="" cols="30" rows="10"></textarea>
+                <textarea
+                    matInput
+                    formControlName="description"
+                    placeholder="Description"
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                ></textarea>
             </mat-form-field>
-            <div *ngIf="descriptionField.dirty && descriptionField.invalid || invalidFormSubmit">
-                <div class="formErrorMessage" *ngIf="descriptionField.hasError('required')">Required field</div>
+            <div
+                *ngIf="
+                    (descriptionField.dirty && descriptionField.invalid) ||
+                    invalidFormSubmit
+                "
+            >
+                <div
+                    class="formErrorMessage"
+                    *ngIf="descriptionField.hasError('required')"
+                >
+                    Required field
+                </div>
             </div>
-            <br>
-            <button [disabled]="waiting || waitingUpload" mat-raised-button type="submit">Send</button>
-            <mat-spinner *ngIf="waiting" diameter="25" ></mat-spinner>
+            <br />
+            <button
+                [disabled]="waiting || waitingUpload"
+                mat-raised-button
+                type="submit"
+            >
+                Send
+            </button>
+            <mat-spinner *ngIf="waiting" diameter="25"></mat-spinner>
         </form>
     </mat-card-content>
 </mat-card>
