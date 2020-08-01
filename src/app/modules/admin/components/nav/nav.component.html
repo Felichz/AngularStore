@@ -3,29 +3,35 @@
         #drawer
         class="sidenav"
         fixedInViewport
-        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-        [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false"
+        [attr.role]="isHandset ? 'dialog' : 'navigation'"
+        [mode]="isHandset ? 'over' : 'side'"
+        [opened]="isHandset === false"
     >
         <mat-toolbar>Menu</mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item (click)="drawer.toggle()" routerLink="./"
+            <a
+                mat-list-item
+                (click)="isHandset && drawer.toggle()"
+                routerLink="./"
                 >Dashboard</a
             >
             <a
                 mat-list-item
-                (click)="drawer.toggle()"
+                (click)="isHandset && drawer.toggle()"
                 routerLink="./product/create"
                 >Create Product</a
             >
             <a
                 mat-list-item
-                (click)="drawer.toggle()"
+                (click)="isHandset && drawer.toggle()"
                 routerLink="./product-list"
                 >Product List</a
             >
             <a mat-list-item (click)="logout()">Logout</a>
-            <a mat-list-item (click)="drawer.toggle()" routerLink="/home"
+            <a
+                mat-list-item
+                (click)="isHandset && drawer.toggle()"
+                routerLink="/home"
                 >Back to Home</a
             >
         </mat-nav-list>
