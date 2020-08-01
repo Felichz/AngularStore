@@ -6,7 +6,7 @@ import {
     OnChanges,
     OnInit,
     OnDestroy,
-    AfterViewInit
+    AfterViewInit,
 } from '@angular/core';
 
 import { ProductInterface } from 'src/app/interfaces/product-interface';
@@ -16,10 +16,9 @@ import { map } from 'rxjs/operators';
 @Component({
     selector: 'app-product',
     templateUrl: './product.component.html',
-    styleUrls: ['./product.component.scss']
+    styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-
     @Input() product: ProductInterface;
     @Output() addToCartEvent: EventEmitter<number>;
     today: Date;
@@ -27,16 +26,14 @@ export class ProductComponent implements OnInit {
     bgImageCss: string;
     productCount: number;
 
-    constructor(
-        private cartService: CartService
-    ) {
+    constructor(private cartService: CartService) {
         this.today = new Date();
         this.addToCartEvent = new EventEmitter();
     }
 
     ngOnInit() {
-        this.cartService.cart.subscribe(cartProducts => {
-            const cartProduct = cartProducts.find(product => {
+        this.cartService.cart.subscribe((cartProducts) => {
+            const cartProduct = cartProducts.find((product) => {
                 return product.id === this.product.id ? true : false;
             });
 
@@ -46,13 +43,11 @@ export class ProductComponent implements OnInit {
                 this.productCount = null;
             }
         });
-
-        console.log(this.product.image);
     }
 
     addToCartClicked() {
         this.cartService.addProduct(this.product);
 
-        this.addToCartEvent.emit( parseInt(this.product.id, 10) );
+        this.addToCartEvent.emit(parseInt(this.product.id, 10));
     }
 }

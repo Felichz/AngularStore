@@ -32,7 +32,6 @@ export class ProductListComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log('ProductListComponent init');
         this.fetchProducts();
 
         this.checkWindowWidth();

@@ -37,7 +37,6 @@ export class NavComponent implements OnInit {
 
         this.isHandset$.subscribe((value) => {
             this.isHandset = value;
-            console.log(this.isHandset);
         });
     }
 
