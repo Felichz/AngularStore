@@ -1,31 +1,74 @@
 <mat-card>
     <mat-card-title>Create Product</mat-card-title>
     <mat-card-content>
-        <form
-            [formGroup]="productForm"
-            (ngSubmit)="submitForm(productForm.value)"
-        >
-            <div *ngIf="imageUrl && !waitingUpload">
+        <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+            <!-- <div *ngIf="imageUrl && !waitingUpload">
                 <img [src]="imageUrl" id="uploadedImage" alt="uploaded-image" />
                 <br />
-            </div>
+            </div> 
             <div *ngIf="waitingUpload">
                 <mat-spinner id="uploadingFile"></mat-spinner>
                 <br />
-            </div>
+            </div>-->
             <input
-                (change)="uploadFile($event)"
+                (change)="selectFile($event)"
                 style="display: none;"
                 id="fileInput"
                 type="file"
+                accept="image/png, image/jpeg"
+                [disabled]="waiting"
             />
             <label
                 id="fileInputLabel"
                 for="fileInput"
                 class="mat-raised-button"
                 color="primary"
-                >Upload image</label
+                [attr.disabled]="waiting ? true : null"
             >
+                Upload image
+                <mat-icon
+                    *ngIf="selectedFile && imageField.valid"
+                    aria-hidden="false"
+                    aria-label="Image selected"
+                    class="check"
+                    >check_circle</mat-icon
+                >
+                <mat-icon
+                    *ngIf="selectedFile && !imageField.valid"
+                    aria-hidden="false"
+                    aria-label="Image selected"
+                    class="error"
+                    >error</mat-icon
+                >
+            </label>
+            <div
+                *ngIf="
+                    (imageField.dirty && imageField.invalid) ||
+                    invalidFormSubmit
+                "
+            >
+                <div
+                    class="formErrorMessage"
+                    *ngIf="imageField.hasError('required')"
+                >
+                    You must upload an image
+                </div>
+                <div *ngIf="!imageField.hasError('required')">
+                    <div
+                        class="formErrorMessage"
+                        *ngIf="imageField.hasError('file_type')"
+                    >
+                        You must upload a png or jpg image file
+                    </div>
+                    <div
+                        class="formErrorMessage"
+                        *ngIf="imageField.hasError('size_exceeded')"
+                    >
+                        The image size can not exceed 1 MB
+                    </div>
+                </div>
+            </div>
+
             <p *ngIf="uploadComplete">Upload Complete</p>
 
             <div *ngIf="uploadPercentage$ | async as uploadPercentage">
@@ -46,12 +89,7 @@
             </div>
             <br />
             <mat-form-field>
-                <input
-                    matInput
-                    formControlName="title"
-                    type="text"
-                    placeholder="Title"
-                />
+                <input matInput formControlName="title" placeholder="Title" />
             </mat-form-field>
             <div
                 *ngIf="
