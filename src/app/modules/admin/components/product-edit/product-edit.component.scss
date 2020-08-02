@@ -11,7 +11,7 @@ div.child {
     padding-top: 2em;
     text-align: center;
     background: white;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, .25);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
 }
 
 mat-card {
@@ -38,7 +38,7 @@ mat-spinner {
 mat-spinner#formSubmitSpinner {
     display: inline-block;
     margin: initial;
-    margin-left: .5em;
+    margin-left: 0.5em;
     vertical-align: middle;
 }
 
@@ -62,6 +62,8 @@ mat-progress-bar {
     mat-card {
         margin: 0;
         width: 100%;
+        min-height: calc(100vh - 64px);
+        box-sizing: border-box;
     }
 
     img#uploadedImage {
