@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 
 import Swal from 'sweetalert2';
 import { fromEvent } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
     selector: 'app-product-list',
@@ -53,10 +54,15 @@ export class ProductListComponent implements OnInit {
 
     deleteProduct(id: string) {
         const executeDelete = () => {
-            this.productsService.getProduct(id).subscribe((product) => {
-                const imgRef = this.storage.storage.refFromURL(product.image);
-                imgRef.delete();
-            });
+            this.productsService
+                .getProduct(id)
+                .pipe(first())
+                .subscribe((product) => {
+                    const imgRef = this.storage.storage.refFromURL(
+                        product.image
+                    );
+                    imgRef.delete();
+                });
 
             this.productsService.deleteProduct(id).then(() => {
                 Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
