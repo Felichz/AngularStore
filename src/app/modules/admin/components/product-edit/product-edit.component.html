@@ -6,12 +6,8 @@
             [formGroup]="productForm"
             (ngSubmit)="submitForm()"
         >
-            <div *ngIf="imageUrl && !waitingUpload">
-                <img [src]="imageUrl" id="uploadedImage" alt="uploaded-image" />
-                <br />
-            </div>
-            <div *ngIf="waitingUpload">
-                <mat-spinner id="uploadingFile"></mat-spinner>
+            <div *ngIf="initialProduct">
+                <img [src]="initialProduct.image" id="uploadedImage" alt="uploaded-image" [ngStyle]="(waiting || waitingUpload) && {opacity: 0.5}" />
                 <br />
             </div>
             <input

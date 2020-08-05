@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MyValidators } from 'src/app/utils/validators';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ProductForm } from 'src/app/modules/admin/utils/product-form';
@@ -31,15 +30,17 @@ export class ProductFormComponent extends ProductForm implements OnInit {
         if (this.productForm.valid) {
             this.disableForm();
             this.uploadFile().then(() => {
-                this.productService.createProduct(this.product).then(() => {
-                    this.enableForm();
-                    Swal.fire({
-                        title: 'New product created!',
-                        icon: 'success',
-                    }).then(() => {
-                        this.router.navigate(['/admin/product-list']);
+                this.productService
+                    .createProduct({ ...tmpFormValue, image: this.imageUrl })
+                    .then(() => {
+                        this.enableForm();
+                        Swal.fire({
+                            title: 'New product created!',
+                            icon: 'success',
+                        }).then(() => {
+                            this.router.navigate(['/admin/product-list']);
+                        });
                     });
-                });
             });
         } else {
             this.invalidFormSubmit = true;

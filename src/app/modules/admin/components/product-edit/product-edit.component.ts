@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-    FormGroup,
-    FormBuilder,
-    Validators,
-    ValidatorFn,
-} from '@angular/forms';
-import { MyValidators } from 'src/app/utils/validators';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { ProductForm } from 'src/app/modules/admin/utils/product-form';
@@ -14,12 +8,8 @@ import { ProductsService } from 'src/app/core/services/products/products.service
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { ProductInterface } from 'src/app/interfaces/product-interface';
-import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { map, takeLast, first } from 'rxjs/operators';
-
-import { ProductFormComponent } from '../product-form/product-form.component';
-import { resolve } from 'url';
+import { first } from 'rxjs/operators';
 
 @Component({
     selector: 'app-product-edit',

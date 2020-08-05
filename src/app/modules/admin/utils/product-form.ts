@@ -11,8 +11,6 @@ import { UploadImage } from 'src/app/modules/admin/utils/upload-image';
 import { ProductsService } from 'src/app/core/services/products/products.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import Swal from 'sweetalert2';
-import { Observable } from 'rxjs';
 import { ProductInterface } from 'src/app/interfaces/product-interface';
 
 const A_MEBIBYTE_IN_BYTES = 1049000;
@@ -64,31 +62,6 @@ export class ProductForm extends UploadImage {
         this.imageField.setValue(this.selectedFile);
         this.imageField.markAsDirty();
     }
-
-    // submitForm() {
-    //     const tmpFormValue = this.productForm.value;
-
-    //     if (this.productForm.valid) {
-    //         this.waiting = true;
-    //         this.disableForm();
-    //         this.uploadFile().then((url) => {
-    //             this.productService
-    //                 .createProduct({ ...tmpFormValue, image: url })
-    //                 .then(() => {
-    //                     this.waiting = false;
-    //                     this.enableForm();
-    //                     Swal.fire({
-    //                         title: 'New product created!',
-    //                         icon: 'success',
-    //                     }).then(() => {
-    //                         this.router.navigate(['/admin/product-list']);
-    //                     });
-    //                 });
-    //         });
-    //     } else {
-    //         this.invalidFormSubmit = true;
-    //     }
-    // }
 
     toggleForm(shouldDisable) {
         const toggleFields = [
