@@ -1,4 +1,4 @@
-import { AbstractControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 export class MyValidators {
     static IsValidPrice(priceField: AbstractControl) {
@@ -13,12 +13,12 @@ export class MyValidators {
     static requiredFileTypes(allowedTypes: string[]) {
         return (imageField: AbstractControl) => {
             if (!imageField) {
-                return true;
+                return {};
             }
             if (!allowedTypes.includes(imageField.value.type)) {
                 return { file_type: true };
             } else {
-                return true;
+                return {};
             }
         };
     }
@@ -26,12 +26,12 @@ export class MyValidators {
     static maxFileSize(maxSize: number) {
         return (imageField: AbstractControl) => {
             if (!imageField) {
-                return true;
+                return {};
             }
             if (imageField.value.size > maxSize) {
                 return { size_exceeded: true };
             } else {
-                return true;
+                return {};
             }
         };
     }

@@ -4,7 +4,7 @@
         <form
             *ngIf="productForm"
             [formGroup]="productForm"
-            (ngSubmit)="submitForm(productForm.value)"
+            (ngSubmit)="submitForm()"
         >
             <div *ngIf="imageUrl && !waitingUpload">
                 <img [src]="imageUrl" id="uploadedImage" alt="uploaded-image" />
@@ -15,18 +15,71 @@
                 <br />
             </div>
             <input
-                (change)="uploadFile($event)"
+                (change)="selectFile($event)"
                 style="display: none;"
                 id="fileInput"
                 type="file"
+                accept="image/png, image/jpeg"
+                [disabled]="waiting"
             />
             <label
                 id="fileInputLabel"
                 for="fileInput"
                 class="mat-raised-button"
                 color="primary"
-                >Upload image</label
+                [attr.disabled]="waiting ? true : null"
             >
+                Upload new image
+                <!-- <mat-icon
+                    *ngIf="!newImageUploaded"
+                    aria-hidden="false"
+                    aria-label="Image selected"
+                    class="initial-check"
+                    >check_circle</mat-icon
+                > -->
+                <mat-icon
+                    *ngIf="selectedFile && imageField.valid"
+                    aria-hidden="false"
+                    aria-label="Image selected"
+                    class="check"
+                    >check_circle</mat-icon
+                >
+                <mat-icon
+                    *ngIf="selectedFile && !imageField.valid"
+                    aria-hidden="false"
+                    aria-label="Image selected"
+                    class="error"
+                    >error</mat-icon
+                >
+            </label>
+            <div
+                *ngIf="
+                    (imageField.dirty && imageField.invalid) ||
+                    invalidFormSubmit
+                "
+            >
+                <div
+                    class="formErrorMessage"
+                    *ngIf="imageField.hasError('required')"
+                >
+                    You must upload an image
+                </div>
+                <div *ngIf="!imageField.hasError('required')">
+                    <div
+                        class="formErrorMessage"
+                        *ngIf="imageField.hasError('file_type')"
+                    >
+                        You must upload a png or jpg image file
+                    </div>
+                    <div
+                        class="formErrorMessage"
+                        *ngIf="imageField.hasError('size_exceeded')"
+                    >
+                        The image size can not exceed 1 MB
+                    </div>
+                </div>
+            </div>
+
             <p *ngIf="uploadComplete">Upload Complete</p>
 
             <div *ngIf="uploadPercentage$ | async as uploadPercentage">
@@ -47,13 +100,7 @@
             </div>
             <br />
             <mat-form-field>
-                <input
-                    #titulo
-                    matInput
-                    formControlName="title"
-                    type="text"
-                    placeholder="Title"
-                />
+                <input matInput formControlName="title" placeholder="Title" />
             </mat-form-field>
             <div
                 *ngIf="
@@ -129,14 +176,10 @@
             >
                 Send
             </button>
-            <mat-spinner
-                *ngIf="waiting"
-                id="formSubmitSpinner"
-                diameter="25"
-            ></mat-spinner>
+            <mat-spinner *ngIf="waiting" diameter="25"></mat-spinner>
         </form>
 
-        <div *ngIf="!productForm && ready">Product not found</div>
+        <div *ngIf="ready && notFound">Product not found</div>
 
         <mat-spinner *ngIf="!ready"></mat-spinner>
     </mat-card-content>
