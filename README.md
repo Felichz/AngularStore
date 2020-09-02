@@ -1,3 +1,3 @@
 # AngularStore
 
-## [Demo](https://anderssonfelix.com/angularstore "Online demo")
+## [Online demo](https://anderssonfelix.com/angularstore "Online demo")
