@@ -30,7 +30,7 @@
     "ngx-cookie-service": "^3.0.4",
     "rxjs": "~6.4.0",
     "sweetalert2": "^9.10.0",
-    "swiper": "^5.3.6",
+    "swiper": "^6.5.1",
     "tslib": "^1.11.1",
     "zone.js": "~0.9.1"
   },
